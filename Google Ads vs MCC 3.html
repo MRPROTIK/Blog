@@ -1,0 +1,742 @@
+<style>
+  .adsnord-blog-wrap,
+  .adsnord-blog-wrap *{ box-sizing:border-box; }
+
+  .adsnord-blog-wrap{
+    --primary:#1d4ed8; /* Slightly deeper blue for white background contrast */
+    --text:#0b1220; 
+    --muted:#334155; 
+    --border:rgba(2,6,23,.14); 
+    --bg:#ffffff; 
+    --bg2:#ffffff;
+    --shadow:0 10px 30px rgba(2,6,23,.12);
+    --radius:18px;
+
+    max-width: 1200px;
+    margin: 70px auto 40px; 
+    padding: 0 18px;
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    line-height: 1.75;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media(min-width: 992px){
+    .adsnord-blog-wrap{ margin-top: 110px; }
+  }
+
+  .adsnord-grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media(min-width: 992px){
+    .adsnord-grid{ grid-template-columns: 320px 1fr; gap: 22px; }
+  }
+
+  /* TOC */
+  .adsnord-toc{ position: relative; }
+  @media(min-width: 992px){
+    .adsnord-toc{
+      position: sticky;
+      top: 120px; 
+      align-self: start;
+      z-index: 10; 
+    }
+  }
+  .adsnord-toc-card{
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 16px 14px;
+  }
+  .adsnord-toc-title{
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: .02em;
+    margin: 0 0 10px;
+    color: var(--text);
+  }
+  .adsnord-toc a{
+    display:block;
+    text-decoration:none;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 10px;
+    border-radius: 12px;
+    transition: .18s ease;
+  }
+  .adsnord-toc a:hover{ color: var(--text); background: rgba(29,78,216,.08); }
+  .adsnord-toc a.is-active{
+    color: var(--text);
+    background: rgba(29,78,216,.12);
+    border: 1px solid rgba(29,78,216,.20);
+  }
+
+  /* Mobile TOC dropdown */
+  .adsnord-toc-mobile{ display:block; margin-bottom: 10px; }
+  @media(min-width: 992px){ .adsnord-toc-mobile{ display:none; } }
+  .adsnord-toc-select{
+    width:100%;
+    padding: 12px 12px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--bg);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    outline: none;
+    font-weight: 700;
+  }
+
+  /* Content */
+  .adsnord-content{ background: transparent; min-width: 0; }
+  .adsnord-card{
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px;
+    margin-bottom: 16px;
+  }
+
+  /* Typography */
+  /* Typography - Fixed Overlapping */
+  /* Typography - Forced Reset to stop overlapping */
+  .adsnord-h1, .adsnord-h2, .adsnord-h3 {
+    display: block !important;
+    position: relative !important;
+    margin-top: 20px !important;
+    margin-bottom: 15px !important;
+    line-height: 1.4 !important; /* Forces breathing room between lines */
+    height: auto !important;     /* Ensures the container grows with the text */
+    transform: none !important;  /* Removes any weird shifting */
+  }
+
+  .adsnord-h1 {
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 900;
+    color: var(--text);
+  }
+
+  .adsnord-h2 {
+    font-size: clamp(22px, 2.5vw, 30px);
+    font-weight: 800;
+    color: var(--text);
+    padding-top: 10px;
+  }
+
+  .adsnord-h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  /* Fix for the "doubled" text look */
+  .adsnord-card * {
+    max-height: none !important;
+  }
+  .adsnord-p{ margin: 0 0 10px; color: var(--text); font-weight: 600; }
+  .adsnord-ul{ margin: 0 0 10px; padding-left: 18px; color: var(--text); }
+  .adsnord-ul li{ margin: 6px 0; color: var(--text); font-weight: 600; }
+  .adsnord-note{
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 8px;
+    font-weight: 650;
+  }
+
+  /* Links */
+  .adsnord-blog-wrap a{
+    color: #1d4ed8;
+    font-weight: 750;
+    text-underline-offset: 3px;
+  }
+  .adsnord-blog-wrap a:hover{
+    color: #1e40af;
+  }
+
+  /* Two-column */
+  .adsnord-two-col{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    align-items: center;
+  }
+  @media(min-width: 900px){
+    .adsnord-two-col{ grid-template-columns: 1.1fr .9fr; gap: 18px; }
+  }
+  .adsnord-img{
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 14px 35px rgba(2,6,23,.14);
+    display:block;
+  }
+  .adsnord-img-wrap{ order: 2; }
+  .adsnord-text-wrap{ order: 1; }
+
+  /* Buttons - ENHANCED CONTRAST */
+  .adsnord-btn-row{ display:flex; gap: 12px; flex-wrap: wrap; margin-top: 15px; }
+  .adsnord-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap: 10px;
+    padding: 14px 20px;
+    border-radius: 14px;
+    text-decoration:none;
+    font-weight: 900;
+    font-size: 15px;
+    border: 2px solid rgba(29,78,216, 0.1);
+    background: rgba(29,78,216, 0.05);
+    color: var(--primary);
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  .adsnord-btn:hover{ 
+    transform: translateY(-2px); 
+    background: rgba(29,78,216, 0.1);
+    box-shadow: 0 4px 12px rgba(2,6,23,0.08);
+  }
+  .adsnord-btn-primary{
+    background: var(--primary);
+    color: #ffffff !important;
+    border: 2px solid var(--primary);
+    box-shadow: 0 4px 15px rgba(29,78,216, 0.25);
+  }
+  .adsnord-btn-primary:hover{ 
+    background: #1e40af; 
+    border-color: #1e40af;
+    box-shadow: 0 6px 20px rgba(29,78,216, 0.35);
+  }
+
+  /* Tables */
+  .adsnord-table{
+    width:100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: #ffffff;
+  }
+  .adsnord-table th,
+  .adsnord-table td{
+    padding: 12px 12px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .adsnord-table th{
+    text-align:left;
+    font-weight: 950;
+    background: rgba(29,78,216,.08);
+  }
+  .adsnord-table tr:last-child td{ border-bottom: none; }
+
+  /* Fact Box */
+  .adsnord-facts{
+    border-radius: var(--radius);
+    border: 1px solid rgba(29,78,216,.28);
+    background: rgba(29,78,216,.05);
+    padding: 18px 18px;
+  }
+  .adsnord-facts-title{
+    margin: 0 0 8px;
+    font-weight: 950;
+    font-size: 14px;
+    letter-spacing: .02em;
+    color: var(--text);
+  }
+
+  /* FAQ Accordion */
+  .adsnord-faq details{
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: #ffffff;
+    padding: 12px 12px;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+  }
+  .adsnord-faq details[open] {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(2,6,23,0.05);
+  }
+  .adsnord-faq summary{
+    cursor: pointer;
+    font-weight: 950;
+    color: var(--text);
+    list-style: none;
+    outline: none;
+  }
+  .adsnord-faq summary::-webkit-details-marker{ display:none; }
+  .adsnord-faq .adsnord-faq-a{
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1.6;
+  }
+
+  /* Anchors */
+  .adsnord-anchor{ scroll-margin-top: 90px; } 
+  @media(min-width: 992px){
+     .adsnord-anchor{ scroll-margin-top: 130px; }
+  }
+  html{ scroll-behavior: smooth; }
+</style>
+
+<!-- ✅ YOUR ORIGINAL HTML + JS CONTINUES UNCHANGED BELOW -->
+<!-- (Keep everything exactly as you already have) -->
+
+
+
+<div class="adsnord-blog-wrap">
+  <div class="adsnord-grid">
+
+    <!-- LEFT: TOC -->
+    <aside class="adsnord-toc">
+      <div class="adsnord-toc-mobile">
+        <select class="adsnord-toc-select" id="adsnordTocSelect" aria-label="Jump to section">
+          <option value="#introduction">Introduction</option>
+          <option value="#google-ads-account">Google Ads Account</option>
+          <option value="#google-ads-account-requirements">Requirements &amp; Setup (Account)</option>
+          <option value="#create-google-ads-account">How to Create a Google Ads Account</option>
+          <option value="#google-ads-manager-account">Google Ads Manager Account (MCC)</option>
+          <option value="#google-ads-manager-requirements">Requirements &amp; Setup (MCC)</option>
+          <option value="#create-google-ads-manager-account">How to Create a Manager Account (MCC)</option>
+          <option value="#account-vs-manager-comparison">Account vs Manager (Table)</option>
+          <option value="#give-manager-access">How to Give Access to Google Ads Account</option>
+          <option value="#key-facts">Key Facts</option>
+          <option value="#author-bio">Author Bio</option>
+          <option value="#final-cta">Final CTA</option>
+          <option value="#faqs">FAQs</option>
+        </select>
+      </div>
+
+      <div class="adsnord-toc-card">
+        <p class="adsnord-toc-title">TABLE OF CONTENTS</p>
+        <nav class="adsnord-toc" id="adsnordToc">
+          <a href="#introduction">Introduction</a>
+          <a href="#google-ads-account">Google Ads Account</a>
+          <a href="#google-ads-account-requirements">Requirements &amp; Setup (Account)</a>
+          <a href="#create-google-ads-account">How to Create a Google Ads Account</a>
+          <a href="#google-ads-manager-account">Google Ads Manager Account (MCC)</a>
+          <a href="#google-ads-manager-requirements">Requirements &amp; Setup (MCC)</a>
+          <a href="#create-google-ads-manager-account">How to Create a Manager Account (MCC)</a>
+          <a href="#account-vs-manager-comparison">Account vs Manager (Table)</a>
+          <a href="#give-manager-access">How to Give Access to Google Ads Account</a>
+          <a href="#key-facts">Key Facts</a>
+          <a href="#author-bio">Author Bio</a>
+          <a href="#final-cta">Final CTA</a>
+          <a href="#faqs">FAQs</a>
+        </nav>
+        <p class="adsnord-note" style="margin:10px 0 0;">
+          Tip: Click a section to jump instantly.
+        </p>
+      </div>
+    </aside>
+
+    <!-- RIGHT: CONTENT -->
+    <main class="adsnord-content">
+
+      <!-- HERO -->
+      <section class="adsnord-card adsnord-anchor" id="introduction">
+        <div class="adsnord-two-col">
+          <div class="adsnord-text-wrap">
+            <h1 class="adsnord-h1">Google Ads Account vs Manager Account: What’s the Difference &amp; Which One You Need</h1>
+
+            <p class="adsnord-sub">
+              The right account structure affects security, scalability, and performance clarity—especially when you’re working with an agency.
+            </p>
+
+            <p class="adsnord-p">
+              If you’re unsure whether you need a standard Google Ads account or a Google Ads Manager Account (MCC),
+              this guide breaks it down step-by-step—plus how to give access the secure way.
+              You can also explore our <a href="https://adsnord.com/services/">Google Ads services</a> for expert help.
+            </p>
+
+            <!-- ONLY ONE BUTTON (Primary CTA) -->
+            <div class="adsnord-btn-row">
+              <a class="adsnord-btn adsnord-btn-primary" href="https://wa.me/46764304702" target="_blank" rel="noopener">
+                Chat on WhatsApp
+              </a>
+            </div>
+            <p class="adsnord-note">No obligation. We work using Manager access (no password sharing).</p>
+          </div>
+
+          <div class="adsnord-img-wrap">
+            <img class="adsnord-img"
+                 src="https://adsnord.com/wp-content/uploads/2026/02/Google-Ads-Account-vs-Manager-Account.webp"
+                 alt="Google Ads account vs manager account comparison" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <!-- What is a Google Ads account? -->
+      <section class="adsnord-card adsnord-anchor" id="google-ads-account">
+        <div class="adsnord-two-col">
+          <div class="adsnord-text-wrap">
+            <h2 class="adsnord-h2">What is a Google Ads account?</h2>
+            <p class="adsnord-p">
+              A <strong>Google Ads account</strong> is a single advertising account where you create and manage campaigns, budgets, keywords, and ads for one business (or one main brand).
+            </p>
+            <p class="adsnord-p">
+              Most businesses start here. If you’re running ads for one website, one offer, and one billing setup, this is usually the right foundation.
+              For more guides, explore the AdsNord <a href="https://adsnord.com/blog/">blog</a>.
+            </p>
+
+            <h3 class="adsnord-h3">Who should use a Google Ads account?</h3>
+            <ul class="adsnord-ul">
+              <li>Small businesses running ads for one website</li>
+              <li>Business owners managing ads in-house</li>
+              <li>Brands with one main market and one billing setup</li>
+            </ul>
+
+            <p class="adsnord-note">
+              Official overview:
+              <a href="https://ads.google.com/intl/sv_se/start/overview-ha/?subid=se-sv-ha-aw-bk-c-bau!o3~Cj0KCQiA-YvMBhDtARIsAHZuUzJ6i_tjdeXJi4Xe9hU-KVO63E5CqQcym6L8riFwb1jmsfjuC4EWy9caAvPfEALw_wcB~115370913036~kwd-94527731~11850094506~582196736374&utm_source=aw&utm_medium=ha&utm_campaign=se-sv-ha-aw-bk-c-bau!o3~Cj0KCQiA-YvMBhDtARIsAHZuUzJ6i_tjdeXJi4Xe9hU-KVO63E5CqQcym6L8riFwb1jmsfjuC4EWy9caAvPfEALw_wcB~115370913036~kwd-94527731~11850094506~582196736374&gclsrc=aw.ds&gad_source=1&gad_campaignid=11850094506&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzJ6i_tjdeXJi4Xe9hU-KVO63E5CqQcym6L8riFwb1jmsfjuC4EWy9caAvPfEALw_wcB"
+                 target="_blank" rel="noopener">Google Ads homepage</a>
+            </p>
+          </div>
+
+          <div class="adsnord-img-wrap">
+            <img class="adsnord-img"
+                 src="https://adsnord.com/wp-content/uploads/2026/02/google-ads-account-dashboard.webp"
+                 alt="What is a Google Ads account dashboard overview" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <!-- Google Ads account requirements -->
+      <section class="adsnord-card adsnord-anchor" id="google-ads-account-requirements">
+        <h2 class="adsnord-h2">Google Ads account requirements</h2>
+        <p class="adsnord-p">
+          Before you create a Google Ads account, make sure you have the basics ready—this prevents setup errors and saves time later.
+        </p>
+
+        <table class="adsnord-table" aria-label="What you need to start a Google Ads account">
+          <thead>
+            <tr>
+              <th>Requirement</th>
+              <th>Why it matters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Google email</td>
+              <td>Used to create and manage the account.</td>
+            </tr>
+            <tr>
+              <td>Website or landing page</td>
+              <td>Where ads send traffic. Also affects policy compliance.</td>
+            </tr>
+            <tr>
+              <td>Billing method</td>
+              <td>Required to run campaigns and keep spending under control.</td>
+            </tr>
+            <tr>
+              <td>Clear goal (leads/sales)</td>
+              <td>Needed for correct campaign structure and measurement.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="adsnord-note">
+          If you want expert help, see our <a href="https://adsnord.com/services/">services</a>.
+        </p>
+      </section>
+
+      <!-- How to create a Google Ads account -->
+      <section class="adsnord-card adsnord-anchor" id="create-google-ads-account">
+        <h2 class="adsnord-h2">How to create a Google Ads account</h2>
+        <p class="adsnord-p">Use this quick, text-only setup checklist (no screenshots needed):</p>
+
+        <ol class="adsnord-ul" style="padding-left:18px;">
+          <li>Sign in with your Google email.</li>
+          <li>Enter your business name and website.</li>
+          <li>Choose your main goal (leads, sales, traffic).</li>
+          <li>Set your billing method.</li>
+          <li>Create your first campaign (or skip and set it up properly later).</li>
+        </ol>
+
+        <p class="adsnord-note">
+          Reference:
+          <a href="https://business.google.com/se/google-ads/?subid=se-sv-ha-aw-bk-c-bau%21o3-s500g500%7Cib%3A6653296821%7Cib%3A9279461727%7Cib%3A7966379274%7C%7ECj0KCQiA-YvMBhDtARIsAHZuUzJ6i_tjdeXJi4Xe9hU-KVO63E5CqQcym6L8riFwb1jmsfjuC4EWy9caAvPfEALw_wcB%7E115370913036%7Ekwd-94527731%7E11850094506%7E582196736374&utm_source=aw&utm_medium=ha&utm_campaign=se-sv-ha-aw-bk-c-bau%21o3%7ECj0KCQiA-YvMBhDtARIsAHZuUzJ6i_tjdeXJi4Xe9hU-KVO63E5CqQcym6L8riFwb1jmsfjuC4EWy9caAvPfEALw_wcB%7E115370913036%7Ekwd-94527731%7E11850094506%7E582196736374&gclsrc=aw.ds&gad_source=1&gclid=Cj0KCQiA-YvMBhDtARIsAHZuUzJ6i_tjdeXJi4Xe9hU-KVO63E5CqQcym6L8riFwb1jmsfjuC4EWy9caAvPfEALw_wcB&authuser=0"
+             target="_blank" rel="noopener">Google Ads support</a>
+        </p>
+      </section>
+
+      <!-- What is Google Ads Manager Account (MCC)? -->
+      <section class="adsnord-card adsnord-anchor" id="google-ads-manager-account">
+        <div class="adsnord-two-col">
+          <div class="adsnord-text-wrap">
+            <h2 class="adsnord-h2">What is Google Ads Manager Account (MCC)?</h2>
+            <p class="adsnord-p">
+              A <strong>Google Ads Manager Account (MCC)</strong> is a master account that manages multiple Google Ads accounts from one dashboard.
+              It’s built for agencies, consultants, and businesses that need structure at scale.
+            </p>
+
+            <h3 class="adsnord-h3">When an MCC makes sense</h3>
+            <ul class="adsnord-ul">
+              <li>You manage multiple ad accounts (brands, regions, clients)</li>
+              <li>You want secure access without sharing passwords</li>
+              <li>You need scalable reporting and governance</li>
+            </ul>
+
+            <p class="adsnord-note">
+              Learn more <a href="https://adsnord.com/about/">about AdsNord</a>.
+            </p>
+          </div>
+
+          <div class="adsnord-img-wrap">
+            <img class="adsnord-img"
+                 src="https://adsnord.com/wp-content/uploads/2026/02/google-ads-manager-account-mcc.webp"
+                 alt="Google Ads Manager Account MCC dashboard illustration" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <!-- MCC requirements -->
+      <section class="adsnord-card adsnord-anchor" id="google-ads-manager-requirements">
+        <h2 class="adsnord-h2">Google Ads Manager Account MCC requirements</h2>
+        <p class="adsnord-p">
+          To set up a Manager Account (MCC) cleanly, use a dedicated email and define how access will be managed across accounts.
+        </p>
+
+        <h3 class="adsnord-h3">Recommended setup rules</h3>
+        <ul class="adsnord-ul">
+          <li>Use a dedicated business email (not tied to one client’s billing)</li>
+          <li>Organize accounts by brand/region/client for clarity</li>
+          <li>Always use email-based permissions (never password sharing)</li>
+          <li>Keep ownership with the business (agency should be access-only)</li>
+        </ul>
+      </section>
+
+      <!-- How to create Google Ads Manager Account -->
+      <section class="adsnord-card adsnord-anchor" id="create-google-ads-manager-account">
+        <h2 class="adsnord-h2">How to create Google Ads Manager Account</h2>
+        <ol class="adsnord-ul" style="padding-left:18px;">
+          <li>Create / sign in with a Google email dedicated to management.</li>
+          <li>Create a Manager Account (MCC) and name it clearly (agency or company).</li>
+          <li>Copy your Manager ID.</li>
+          <li>Link existing Google Ads accounts (or request access to them).</li>
+          <li>Set user permissions based on roles (admin/standard/read-only).</li>
+        </ol>
+      </section>
+
+      <!-- Comparison -->
+      <section class="adsnord-card adsnord-anchor" id="account-vs-manager-comparison">
+        <h2 class="adsnord-h2">Google Ads Account vs Manager Account (Comparison)</h2>
+
+        <table class="adsnord-table" aria-label="Google Ads Account vs Manager Account comparison table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Google Ads Account</th>
+              <th>Manager Account (MCC)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Best for</td>
+              <td>One business / one website</td>
+              <td>Multiple accounts, agencies, multi-brand</td>
+            </tr>
+            <tr>
+              <td>Scalability</td>
+              <td>Limited</td>
+              <td>High (centralized management)</td>
+            </tr>
+            <tr>
+              <td>Access model</td>
+              <td>User access inside one account</td>
+              <td>Email-based manager access across accounts</td>
+            </tr>
+            <tr>
+              <td>Security</td>
+              <td>OK (if managed well)</td>
+              <td>Best practice (no password sharing)</td>
+            </tr>
+            <tr>
+              <td>Reporting across accounts</td>
+              <td>No</td>
+              <td>Yes</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Give access -->
+      <section class="adsnord-card adsnord-anchor" id="give-manager-access">
+        <div class="adsnord-two-col">
+          <div class="adsnord-text-wrap">
+            <h2 class="adsnord-h2">How to give access to Google Ads account</h2>
+
+            <p class="adsnord-p">
+              The secure way to work with an agency is to <strong>add manager access to Google Ads</strong>—not by sharing your login.
+              This keeps you in control and lets you revoke access any time.
+            </p>
+
+            <h3 class="adsnord-h3">Add manager access to Google Ads (simple steps)</h3>
+            <ol class="adsnord-ul" style="padding-left:18px;">
+              <li>Ask your agency for their Manager ID (MCC ID).</li>
+              <li>In your account, go to access settings and add the Manager ID.</li>
+              <li>Approve the request and choose the right permission level.</li>
+            </ol>
+
+            <h3 class="adsnord-h3">Google Ads account user permissions (quick guide)</h3>
+            <ul class="adsnord-ul">
+              <li><strong>Admin</strong>: full control (only trusted owners)</li>
+              <li><strong>Standard</strong>: manage campaigns (common for agencies)</li>
+              <li><strong>Read-only</strong>: view only (for reporting)</li>
+            </ul>
+          </div>
+
+          <div class="adsnord-img-wrap">
+            <img class="adsnord-img"
+                 src="https://adsnord.com/wp-content/uploads/2026/02/google-ads-account-access-manager.webp"
+                 alt="How to give manager access to Google Ads account" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Facts -->
+      <section class="adsnord-card adsnord-anchor" id="key-facts">
+        <h2 class="adsnord-h2">Key Facts</h2>
+        <div class="adsnord-facts" role="note" aria-label="Key facts box">
+          <p class="adsnord-facts-title">Quick takeaways (read this if you’re short on time)</p>
+          <ul class="adsnord-ul" style="margin:0; padding-left:18px;">
+            <li>Sharing passwords is a security risk—use manager access instead.</li>
+            <li>Business owners should own the Google Ads account; agencies should have permissions.</li>
+            <li>MCC is the scalable structure for managing multiple accounts.</li>
+            <li>Correct structure improves clarity and prevents messy handovers later.</li>
+            <li>You can revoke manager access at any time.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Author Bio -->
+      <section class="adsnord-card adsnord-anchor" id="author-bio">
+        <h2 class="adsnord-h2">Author Bio</h2>
+        <p class="adsnord-p">
+          <strong>Written by the AdsNord Team</strong><br>
+          AdsNord is a Google Ads–focused agency helping businesses set up, manage, and scale advertising accounts the right way.
+          We work exclusively with Google Ads and manage client accounts using secure Manager access to ensure transparency, performance, and long-term control.
+          Learn more <a href="https://adsnord.com/about/">about AdsNord</a>.
+        </p>
+      </section>
+
+      <!-- Final CTA (ONLY ONE BUTTON = Secondary CTA) -->
+      <section class="adsnord-card adsnord-anchor" id="final-cta">
+        <h2 class="adsnord-h2">Ready to set this up the right way?</h2>
+        <p class="adsnord-p">
+          If you want your account structure reviewed (or you want us to help you set it up cleanly), reach out here:
+        </p>
+
+        <div class="adsnord-btn-row">
+          <a class="adsnord-btn adsnord-btn-primary" href="https://adsnord.com/contact/">
+            Request a Free Google Ads Audit
+          </a>
+        </div>
+
+        <p class="adsnord-note">
+          Prefer WhatsApp? You can still message us here:
+          <a href="https://wa.me/46764304702" target="_blank" rel="noopener">WhatsApp link</a>.
+        </p>
+      </section>
+
+      <!-- FAQs (Accordion) -->
+      <section class="adsnord-card adsnord-anchor" id="faqs">
+        <h2 class="adsnord-h2">FAQs</h2>
+
+        <div class="adsnord-faq" role="region" aria-label="Frequently asked questions">
+          <details>
+            <summary>What is the difference between a Google Ads account and a Manager Account (MCC)?</summary>
+            <div class="adsnord-faq-a">
+              A Google Ads account runs campaigns for one advertiser. A Manager Account (MCC) manages multiple Google Ads accounts from one place using permissions—not shared logins.
+            </div>
+          </details>
+
+          <details>
+            <summary>Do I need a Google Ads Manager Account (MCC) as a business owner?</summary>
+            <div class="adsnord-faq-a">
+              If you run ads for only one business, you often don’t need MCC. MCC is most useful for agencies, consultants, or businesses managing multiple accounts/brands/regions.
+            </div>
+          </details>
+
+          <details>
+            <summary>Is it safe to add manager access to Google Ads?</summary>
+            <div class="adsnord-faq-a">
+              Yes. Manager access is the recommended way to collaborate. You can set permission levels and revoke access at any time.
+            </div>
+          </details>
+
+          <details>
+            <summary>Which permission level should I give an agency?</summary>
+            <div class="adsnord-faq-a">
+              Typically “Standard” works for day-to-day management. Keep “Admin” limited to trusted owners unless there’s a clear need.
+            </div>
+          </details>
+
+          <details>
+            <summary>Who should own the Google Ads account?</summary>
+            <div class="adsnord-faq-a">
+              The business owner should own the account and billing. Agencies should work through Manager access so you keep full control.
+            </div>
+          </details>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const wrap = document.querySelector('.adsnord-blog-wrap');
+    if(!wrap) return;
+
+    const sel = wrap.querySelector('#adsnordTocSelect');
+    if(sel){
+      sel.addEventListener('change', (e) => {
+        const id = e.target.value;
+        const el = wrap.querySelector(id);
+        if(el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    const tocLinks = Array.from(wrap.querySelectorAll('#adsnordToc a'));
+    const sections = tocLinks
+      .map(a => wrap.querySelector(a.getAttribute('href')))
+      .filter(Boolean);
+
+    if(!sections.length) return;
+
+    const setActive = (hash) => {
+      tocLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === hash));
+      if(sel){
+        const opt = Array.from(sel.options).find(o => o.value === hash);
+        if(opt) sel.value = hash;
+      }
+    };
+
+    const obs = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(en => en.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if(visible && visible.target && visible.target.id){
+        setActive('#' + visible.target.id);
+      }
+    }, { root: null, threshold: [0.18, 0.30, 0.45, 0.60] });
+
+    sections.forEach(sec => obs.observe(sec));
+    setActive('#introduction');
+  })();
+</script>
