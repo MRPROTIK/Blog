@@ -1,0 +1,1085 @@
+<!-- AdsNord Blog (Responsive HTML) — Google Ads Campaign Setup (8 Steps)
+✅ Paste into ONE Elementor “HTML” widget.
+✅ Mobile-first + upgraded Tablet/Desktop responsiveness.
+✅ Scoped CSS to .adsnord-blog (won’t affect site-wide styles).
+✅ Inter typography (loads from Google Fonts).
+✅ Hero: ONLY WhatsApp CTA (Contact removed).
+✅ Final CTA: ONLY Contact CTA (WhatsApp removed).
+✅ TOC: collapsible on mobile, sticky left on desktop.
+✅ Hero image inserted + SEO alt + caption.
+-->
+
+<section class="adsnord-blog" aria-label="Google Ads Campaign Setup Blog">
+  <style>
+    /* ========== LOAD INTER (TYPOGRAPHY) ========== */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+    /* ========== SCOPE RESET ========== */
+    .adsnord-blog, .adsnord-blog * { box-sizing: border-box; }
+    .adsnord-blog { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+    /* ========== THEME ========== */
+    .adsnord-blog{
+      --bg:#ffffff;
+      --panel:#f8fafc;
+      --panel2:#f1f5f9;
+      --text:#0b1220;
+      --muted:#475569;
+      --border: rgba(2,6,23,.12);
+      --primary:#2563eb;
+      --primary2:#1d4ed8;
+      --good:#16a34a;
+      --warn:#f59e0b;
+
+      --radius:18px;
+      --radius2:22px;
+
+      /* ✅ Inter typography */
+      font-family: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+
+      /* ✅ smoother text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: geometricPrecision;
+    }
+
+    /* =========================================================
+       ✅ FIX 1: H1/H2 OVERLAP + SPACING (Scoped, safe overrides)
+       This prevents theme/Elementor effects like text-stroke,
+       shadows, filters, transforms, pseudo-elements, etc.
+       ========================================================= */
+    .adsnord-blog h1,
+    .adsnord-blog h2,
+    .adsnord-blog h3,
+    .adsnord-blog h4{
+      text-shadow: none !important;
+      -webkit-text-stroke: 0 !important;
+      -webkit-text-stroke-width: 0 !important;
+      filter: none !important;
+      transform: none !important;
+      animation: none !important;
+      position: static !important;
+      white-space: normal !important;
+      overflow-wrap: anywhere !important;
+      word-break: break-word !important;
+      max-width: 100% !important;
+      clear: both !important;
+    }
+    .adsnord-blog h1::before,
+    .adsnord-blog h1::after,
+    .adsnord-blog h2::before,
+    .adsnord-blog h2::after{
+      content: none !important;
+    }
+
+    /* stronger line-height + margins for headings to stop “stacking” */
+    .adsnord-h1{
+      line-height: 1.18 !important;
+      margin: 10px 0 10px !important;
+    }
+    .adsnord-blog h2{
+      line-height: 1.28 !important;
+      margin: 18px 0 10px !important;
+    }
+    .adsnord-blog h3{
+      line-height: 1.35 !important;
+      margin: 14px 0 8px !important;
+    }
+    .adsnord-blog p{ margin: 0 0 12px !important; }
+
+    /* ========== RESPONSIVE LAYOUT (MOBILE → TABLET → DESKTOP) ========== */
+    .adsnord-container{
+      width: 100%;
+      margin: 0 auto;
+      padding: 16px 14px 44px;
+      max-width: 1100px; /* wider for desktop */
+    }
+
+    .adsnord-layout{
+      display: grid;
+      grid-template-columns: 1fr; /* mobile */
+      gap: 14px;
+      align-items: start;
+    }
+
+    /* Tablet: still stacked, but slightly larger spacing and type */
+    @media (min-width: 720px){
+      .adsnord-container{ padding: 20px 18px 56px; }
+      .adsnord-layout{ gap: 16px; }
+      .adsnord-h1{ font-size: 34px !important; }
+      .adsnord-subtitle{ font-size: 16px !important; }
+      .adsnord-blog h2{ font-size: 22px !important; }
+      .adsnord-blog h3{ font-size: 16px !important; }
+    }
+
+    /* Desktop: TOC left + content right */
+    @media (min-width: 1024px){
+      .adsnord-layout{
+        grid-template-columns: 300px 1fr;
+        gap: 18px;
+      }
+      .adsnord-toc{
+        position: sticky;
+        top: 14px;
+      }
+    }
+
+    /* ========== HERO ========== */
+    .adsnord-hero{
+      padding: 20px 18px;
+      border-radius: var(--radius2);
+      background:
+        radial-gradient(900px 300px at 20% 0%, rgba(37,99,235,.12), transparent 60%),
+        radial-gradient(800px 260px at 90% 20%, rgba(22,163,74,.08), transparent 55%),
+        linear-gradient(180deg, rgba(248,250,252,.95), rgba(241,245,249,.95));
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 38px rgba(2,6,23,.08);
+    }
+
+    .adsnord-kickers{
+      display: grid;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .adsnord-kicker{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: .2px;
+      color: rgba(11,18,32,.92);
+    }
+    .adsnord-dot{
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+      flex: 0 0 auto;
+    }
+
+    .adsnord-h1{
+      font-size: 28px;
+      letter-spacing: -0.7px;
+      font-weight: 900;
+    }
+    .adsnord-subtitle{
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .adsnord-mini{
+      font-size: 13px;
+      color: rgba(71,85,105,.95);
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    /* Hero image */
+    .adsnord-hero-media{
+      margin-top: 14px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(2,6,23,.10);
+      background: rgba(255,255,255,.70);
+    }
+    .adsnord-hero-media img{
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .adsnord-caption{
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(71,85,105,.95);
+      font-weight: 500;
+    }
+    .adsnord-hero-caption{
+      padding: 10px 12px 12px;
+      border-top: 1px solid rgba(2,6,23,.08);
+      background: rgba(248,250,252,.82);
+    }
+
+    /* CTA */
+    .adsnord-cta-row{
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .adsnord-btn{
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(37,99,235,.25);
+      background: linear-gradient(180deg, rgba(37,99,235,.12), rgba(37,99,235,.08));
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 15px;
+    }
+    .adsnord-btn.primary{
+      background: linear-gradient(180deg, var(--primary), var(--primary2));
+      color: #fff;
+      border-color: rgba(37,99,235,.55);
+      box-shadow: 0 12px 26px rgba(37,99,235,.22);
+    }
+
+    /* ========== LINKS + TYPE ========== */
+    .adsnord-blog a{ color: var(--primary2); text-decoration: none; font-weight: 800; }
+    .adsnord-blog a:hover{ text-decoration: underline; }
+
+    .adsnord-blog h2{
+      font-size: 20px;
+      letter-spacing: -0.3px;
+      font-weight: 900;
+    }
+    .adsnord-blog h3{
+      font-size: 15px;
+      letter-spacing: -0.1px;
+      font-weight: 800;
+    }
+
+    /* ========== TOC ========== */
+    .adsnord-toc{
+      border: 1px solid var(--border);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 10px 28px rgba(2,6,23,.05);
+      overflow: hidden;
+    }
+    .adsnord-toc details{ padding: 0; }
+    .adsnord-toc summary{
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 14px 12px;
+      background: rgba(241,245,249,.85);
+      border-bottom: 1px solid rgba(2,6,23,.08);
+      font-weight: 1000;
+      font-size: 14px;
+      color: rgba(11,18,32,.92);
+    }
+    .adsnord-toc summary::-webkit-details-marker{ display:none; }
+    .adsnord-toc-head{
+      padding: 14px 14px 12px;
+      background: rgba(241,245,249,.85);
+      border-bottom: 1px solid rgba(2,6,23,.08);
+    }
+    .adsnord-toc-title{
+      font-size: 14px;
+      font-weight: 1000;
+      margin: 0;
+      color: rgba(11,18,32,.92);
+    }
+    .adsnord-toc-sub{
+      margin: 6px 0 0;
+      font-size: 12px;
+      color: rgba(71,85,105,.95);
+      font-weight: 700;
+    }
+    .adsnord-toc-body{
+      padding: 12px 14px 14px;
+      display: grid;
+      gap: 8px;
+    }
+    .adsnord-toc a{
+      display: block;
+      padding: 9px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(2,6,23,.10);
+      background: rgba(248,250,252,.9);
+      color: rgba(11,18,32,.92);
+      font-size: 13px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .adsnord-toc a:hover{
+      border-color: rgba(37,99,235,.30);
+      background: rgba(37,99,235,.06);
+    }
+    @media (min-width: 1024px){
+      .adsnord-toc summary{ display:none; }
+      .adsnord-toc .adsnord-toc-body{ display:grid !important; }
+    }
+
+    /* ========== CONTENT SECTIONS ========== */
+    .adsnord-section{
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--border);
+      background: rgba(248,250,252,.8);
+    }
+
+    .adsnord-step{
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 10px 28px rgba(2,6,23,.05);
+    }
+
+    .adsnord-step .label{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(37,99,235,.18);
+      background: rgba(37,99,235,.08);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .25px;
+      color: rgba(11,18,32,.92);
+      margin-bottom: 10px;
+    }
+    .adsnord-step .label .num{
+      width: 22px; height: 22px; border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--primary);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .adsnord-grid{
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    @media (min-width: 720px){
+      .adsnord-grid{
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+    }
+
+    .adsnord-box{
+      border: 1px solid var(--border);
+      background: rgba(241,245,249,.72);
+      border-radius: 16px;
+      padding: 12px 12px;
+    }
+    .adsnord-box strong{ display:block; margin-bottom: 6px; font-size: 13px; }
+    .adsnord-list{
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(11,18,32,.92);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .adsnord-list li{ margin: 6px 0; }
+
+    .adsnord-note{
+      border-left: 4px solid rgba(37,99,235,.55);
+      padding: 10px 12px;
+      background: rgba(37,99,235,.06);
+      border-radius: 14px;
+      font-size: 14px;
+      color: rgba(11,18,32,.92);
+      margin-top: 10px;
+      font-weight: 500;
+    }
+    .adsnord-note.good{ border-left-color: rgba(22,163,74,.6); background: rgba(22,163,74,.06); }
+
+    /* ========== TABLES ========== */
+    .adsnord-tablewrap{
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.92);
+      margin-top: 10px;
+    }
+    .adsnord-table{
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+      font-size: 13px;
+    }
+    .adsnord-table th,
+    .adsnord-table td{
+      padding: 10px 10px;
+      border-bottom: 1px solid rgba(2,6,23,.08);
+      vertical-align: top;
+      font-weight: 500;
+    }
+    .adsnord-table th{
+      text-align: left;
+      background: rgba(241,245,249,.85);
+      font-weight: 900;
+      color: rgba(11,18,32,.92);
+    }
+
+    /* ========== SVG VISUALS ========== */
+    .adsnord-figure{
+      margin-top: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.92);
+      border-radius: 16px;
+      padding: 12px;
+      overflow: hidden;
+    }
+    .adsnord-figure svg{
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ========== ABOUT + FINAL CTA + FAQ ========== */
+    .adsnord-about{
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(900px 320px at 15% 0%, rgba(37,99,235,.12), transparent 60%),
+        linear-gradient(180deg, rgba(248,250,252,.95), rgba(241,245,249,.95));
+    }
+
+    .adsnord-trust{
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    @media (min-width: 720px){
+      .adsnord-trust{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .adsnord-final{
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(37,99,235,.22);
+      background: rgba(37,99,235,.06);
+    }
+
+    .adsnord-faq{
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.92);
+    }
+    .adsnord-faq details{
+      border: 1px solid rgba(2,6,23,.10);
+      background: rgba(248,250,252,.9);
+      border-radius: 16px;
+      padding: 12px 12px;
+      margin-top: 10px;
+    }
+    .adsnord-faq summary{
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 14px;
+      color: rgba(11,18,32,.92);
+      list-style: none;
+    }
+    .adsnord-faq summary::-webkit-details-marker { display: none; }
+    .adsnord-faq .ans{
+      margin-top: 8px;
+      color: rgba(71,85,105,.98);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .adsnord-divider{ height: 1px; background: rgba(2,6,23,.10); margin: 14px 0; }
+    .adsnord-pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 7px 10px; border-radius: 999px;
+      border:1px solid rgba(2,6,23,.10);
+      background: rgba(255,255,255,.85);
+      font-size: 12px;
+      color: rgba(71,85,105,.95);
+      font-weight: 800;
+    }
+  </style>
+
+  <div class="adsnord-container">
+    <div class="adsnord-layout">
+
+      <!-- LEFT TOC -->
+      <nav class="adsnord-toc" aria-label="Table of contents">
+        <details open>
+          <summary>Table of Contents</summary>
+
+          <div class="adsnord-toc-head" aria-hidden="true">
+            <p class="adsnord-toc-title">Table of Contents</p>
+            <p class="adsnord-toc-sub">Jump to any section</p>
+          </div>
+
+          <div class="adsnord-toc-body">
+            <a href="#top">Start (Hero)</a>
+            <a href="#step-1">Step 1: Define Your Goal</a>
+            <a href="#step-2">Step 2: Choose a Campaign Type</a>
+            <a href="#step-3">Step 3: Set Up Budget</a>
+            <a href="#step-4">Step 4: Choose Your Bidding Strategy</a>
+            <a href="#step-5">Step 5: Add Assets to Your Ads</a>
+            <a href="#step-6">Step 6: Create Ad Groups</a>
+            <a href="#step-7">Step 7: Choose Your Focus</a>
+            <a href="#step-8">Step 8: Set Up Conversions</a>
+            <a href="#about">About AdsNord</a>
+            <a href="#final-cta">Final CTA</a>
+            <a href="#faq">FAQ</a>
+          </div>
+        </details>
+      </nav>
+
+      <!-- CONTENT -->
+      <main id="top" aria-label="Blog content">
+
+        <!-- HERO -->
+        <header class="adsnord-hero" aria-label="Hero section">
+          <div class="adsnord-kickers">
+            <div class="adsnord-kicker"><span class="adsnord-dot"></span><span><b>A proven framework</b> used in real Google Ads accounts</span></div>
+            <div class="adsnord-kicker"><span class="adsnord-dot"></span><span><b>Built for sales, leads</b> & scalable growth</span></div>
+            <div class="adsnord-kicker"><span class="adsnord-dot"></span><span><b>Strategy → Structure → Measurement</b> (not guesswork)</span></div>
+          </div>
+
+          <h1 class="adsnord-h1">Creating Effective Campaigns: The 8-Step Google Ads Campaign Setup Framework</h1>
+
+          <!-- ✅ SEO FIX (density): add exact focus keyword naturally (1 line) -->
+          <p class="adsnord-subtitle">
+            A mobile-first, step-by-step Google Ads campaign setup guide designed to help you define the right goal,
+            choose the best campaign type, set a smart budget, pick the right bidding strategy, add high-impact ad assets,
+            structure ad groups, sharpen targeting focus, and set up conversion tracking that enables reliable optimization.
+            This guide follows a practical <b>Google Ads campaign setup</b> checklist that works for both humans and AI-powered optimization.
+          </p>
+
+          <p class="adsnord-mini">
+            Want to see how AdsNord approaches Google Ads as a system? Learn more on our
+            <a href="https://adsnord.com/about/" target="_blank" rel="noopener">About page</a>.
+          </p>
+
+          <!-- HERO IMAGE -->
+          <figure class="adsnord-hero-media" aria-label="Hero image: Google Ads campaign setup framework">
+            <img
+              src="https://adsnord.com/wp-content/uploads/2026/02/google-ads-campaign-setup-step-by-step-framewor.webp"
+              alt="Google Ads campaign setup step by step framework for sales and lead generation"
+              loading="eager"
+              decoding="async"
+            />
+            <figcaption class="adsnord-hero-caption adsnord-caption">
+              A visual overview of the Google Ads campaign setup framework explained in this guide.
+            </figcaption>
+          </figure>
+
+          <!-- ✅ HERO CTA: ONLY WHATSAPP -->
+          <div class="adsnord-cta-row">
+            <a class="adsnord-btn primary" href="https://wa.me/46764304702" target="_blank" rel="noopener">
+              ✅ Get your free Google Ads action plan on WhatsApp
+            </a>
+          </div>
+        </header>
+
+        <!-- QUICK TRUST STRIP -->
+        <section class="adsnord-section" aria-label="Quick value summary">
+          <div class="adsnord-grid">
+            <div class="adsnord-box">
+              <strong>What you’ll gain</strong>
+              <ul class="adsnord-list">
+                <li>A clear campaign setup process that both humans and algorithms understand</li>
+                <li>Better intent alignment (less wasted spend, more qualified clicks)</li>
+                <li>Stronger measurement signals for smarter bidding and scaling</li>
+              </ul>
+            </div>
+
+            <div class="adsnord-box">
+              <strong>Official reference points</strong>
+              <ul class="adsnord-list">
+                <li>Google’s campaign creation guidance: <a href="https://support.google.com/google-ads/answer/6324971?hl=en" target="_blank" rel="noopener">Create a campaign</a></li>
+                <li>Google’s Search campaign setup: <a href="https://support.google.com/google-ads/answer/9510373?hl=en" target="_blank" rel="noopener">Create a Search campaign</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- STEP 1 -->
+        <article class="adsnord-step" id="step-1">
+          <div class="label"><span class="num">1</span> Define Your Goal</div>
+
+          <!-- ✅ SEO FIX (RankMath): Focus keyword in H2 subheading -->
+          <h2>Step 1: Google Ads Campaign Setup — Define Your Goal</h2>
+
+          <h3>What is this?</h3>
+          <p>Goal definition is deciding what <em>success</em> means for your Google Ads campaign—sales, leads, traffic, awareness, or local actions. This is the signal Google uses to recommend setup paths and optimize delivery.</p>
+
+          <h3>Why this matters</h3>
+          <p>If your goal is unclear (or you mix goals), the system learns the wrong outcome—leading to clicks without ROI or leads that never turn into customers.</p>
+
+          <h3>Focus Settings (How to set it up)</h3>
+          <ul class="adsnord-list">
+            <li><b>Sales:</b> purchases, checkouts</li>
+            <li><b>Leads:</b> forms, calls, WhatsApp clicks, bookings</li>
+            <li><b>Website traffic:</b> quality visits (use carefully)</li>
+            <li><b>Product & brand consideration</b></li>
+            <li><b>Brand awareness & reach</b></li>
+            <li><b>Local store visits & promotions</b></li>
+          </ul>
+
+          <div class="adsnord-tablewrap" role="region" aria-label="Goal comparison table" tabindex="0">
+            <table class="adsnord-table">
+              <thead>
+                <tr>
+                  <th>Goal Type</th>
+                  <th>Best For</th>
+                  <th>Primary KPI</th>
+                  <th>Common Mistake</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>Sales</b></td>
+                  <td>E-commerce / transactions</td>
+                  <td>Purchases, ROAS</td>
+                  <td>Tracking the wrong events (e.g., page views)</td>
+                </tr>
+                <tr>
+                  <td><b>Leads</b></td>
+                  <td>Service businesses</td>
+                  <td>Cost per lead, lead quality</td>
+                  <td>Optimizing for traffic instead of inquiries</td>
+                </tr>
+                <tr>
+                  <td><b>Traffic</b></td>
+                  <td>Content and top-funnel</td>
+                  <td>Engaged sessions</td>
+                  <td>Expecting sales from cold clicks</td>
+                </tr>
+                <tr>
+                  <td><b>Awareness</b></td>
+                  <td>New brands and reach</td>
+                  <td>Reach, impressions</td>
+                  <td>Judging success by CPA too early</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="adsnord-caption">Table: How campaign goals change KPIs and what “success” should look like.</div>
+
+          <div class="adsnord-note good">
+            <b>Key Takeaway:</b> One campaign should optimize toward <b>one primary outcome</b>.
+          </div>
+          <div class="adsnord-note">
+            <b>Pro Tip:</b> For a ROI-focused perspective on channel performance, read:
+            <a href="https://adsnord.com/blog/google-ads-optimization/google-ads-vs-meta-ads-roi-2026/" target="_blank" rel="noopener">Google Ads vs Meta Ads ROI (2026)</a>.
+          </div>
+        </article>
+
+        <!-- STEP 2 -->
+        <article class="adsnord-step" id="step-2">
+          <div class="label"><span class="num">2</span> Choose a Campaign Type</div>
+          <h2>Step 2: Choose a Campaign Type</h2>
+
+          <h3>What is this?</h3>
+          <p>Campaign type defines <em>where</em> your ads appear (Search, Display, YouTube, Shopping, etc.) and what tools you can use (assets, audiences, feeds, automation).</p>
+
+          <h3>Why this matters</h3>
+          <p>Even great ads fail if the campaign type doesn’t match user intent—your budget goes to the wrong inventory, at the wrong stage of the funnel.</p>
+
+          <h3>Focus Settings (How to set it up)</h3>
+          <ul class="adsnord-list">
+            <li><b>Search:</b> high-intent queries</li>
+            <li><b>Display:</b> remarketing + awareness</li>
+            <li><b>Video:</b> YouTube reach + consideration</li>
+            <li><b>Demand Gen:</b> discovery-style demand creation</li>
+            <li><b>Shopping:</b> feed-driven product ads</li>
+            <li><b>Local:</b> store visits/actions</li>
+            <li><b>Performance Max:</b> multi-channel automation</li>
+          </ul>
+
+          <div class="adsnord-note good">
+            <b>Key Takeaway:</b> Campaign type is a <b>strategy decision</b>, not a checkbox.
+          </div>
+          <div class="adsnord-note">
+            <b>Pro Tip:</b> For Google’s official setup logic, see:
+            <a href="https://support.google.com/google-ads/answer/6324971?hl=en" target="_blank" rel="noopener">Google Ads: Create a campaign</a>.
+          </div>
+        </article>
+
+        <!-- STEP 3 -->
+        <article class="adsnord-step" id="step-3">
+          <div class="label"><span class="num">3</span> Set Up Budget</div>
+          <h2>Step 3: Set Up Budget</h2>
+
+          <h3>What is this?</h3>
+          <p>Your budget determines how fast Google can collect data and learn what converts. Think of budget as the fuel that powers optimization and stability.</p>
+
+          <h3>Why this matters</h3>
+          <p>Too little budget keeps campaigns stuck in learning. Too much budget without structure scales mistakes. The goal is reliable testing and predictable scaling.</p>
+
+          <h3>Focus Settings (How to set it up)</h3>
+          <ul class="adsnord-list">
+            <li>Daily budget (start with a test range)</li>
+            <li>Test duration (7–14 days)</li>
+            <li>Geo scope and keyword scope (tighten when budget is limited)</li>
+            <li>Budget distribution across campaigns (avoid splitting too thin)</li>
+          </ul>
+
+          <figure class="adsnord-figure" aria-label="Budget vs learning speed chart">
+            <svg viewBox="0 0 520 260" role="img" aria-label="Bar chart showing budget impact on learning speed">
+              <line x1="55" y1="210" x2="500" y2="210" stroke="rgba(2,6,23,.35)" stroke-width="2"/>
+              <line x1="55" y1="35" x2="55" y2="210" stroke="rgba(2,6,23,.35)" stroke-width="2"/>
+              <text x="10" y="48" font-size="12" fill="rgba(71,85,105,.95)" font-weight="800">Faster</text>
+              <text x="10" y="210" font-size="12" fill="rgba(71,85,105,.95)" font-weight="800">Slower</text>
+
+              <rect x="105" y="140" width="90" height="70" rx="10" fill="rgba(37,99,235,.18)" stroke="rgba(37,99,235,.35)"/>
+              <rect x="225" y="95"  width="90" height="115" rx="10" fill="rgba(37,99,235,.26)" stroke="rgba(37,99,235,.40)"/>
+              <rect x="345" y="60"  width="90" height="150" rx="10" fill="rgba(37,99,235,.34)" stroke="rgba(37,99,235,.48)"/>
+
+              <text x="118" y="235" font-size="12" fill="rgba(71,85,105,.95)" font-weight="900">Low</text>
+              <text x="236" y="235" font-size="12" fill="rgba(71,85,105,.95)" font-weight="900">Medium</text>
+              <text x="360" y="235" font-size="12" fill="rgba(71,85,105,.95)" font-weight="900">High</text>
+
+              <text x="105" y="20" font-size="14" fill="rgba(11,18,32,.92)" font-weight="900">
+                Budget level vs optimization learning speed (conceptual)
+              </text>
+            </svg>
+            <figcaption class="adsnord-caption">
+              Chart: When budget is too low, learning is slower. A balanced budget speeds up stable optimization.
+            </figcaption>
+          </figure>
+
+          <div class="adsnord-note good">
+            <b>Key Takeaway:</b> Budget is about <b>learning efficiency</b>, not just spend.
+          </div>
+          <div class="adsnord-note">
+            <b>Pro Tip:</b> If you want a professional structure built around your budget constraints, explore our
+            <a href="https://adsnord.com/services/google-ads-management/" target="_blank" rel="noopener">Google Ads Management</a> approach.
+          </div>
+        </article>
+
+        <!-- STEP 4 -->
+        <article class="adsnord-step" id="step-4">
+          <div class="label"><span class="num">4</span> Choose Your Bidding Strategy</div>
+          <h2>Step 4: Choose Your Bidding Strategy</h2>
+
+          <h3>What is this?</h3>
+          <p>Bidding strategy tells Google how to make auction decisions—whether to pursue more conversions, control CPA, or optimize for revenue value (ROAS).</p>
+
+          <h3>Why this matters</h3>
+          <p>Smart bidding is powerful only when your tracking signals are clean. Aggressive targets without enough data can stall delivery or inflate costs.</p>
+
+          <h3>Focus Settings (How to set it up)</h3>
+          <ul class="adsnord-list">
+            <li><b>Maximize Conversions:</b> best for learning + early scaling</li>
+            <li><b>Target CPA:</b> after stable conversion volume</li>
+            <li><b>Maximize Conversion Value:</b> for value-based optimization</li>
+            <li><b>Target ROAS:</b> for revenue efficiency (e-commerce)</li>
+          </ul>
+
+          <figure class="adsnord-figure" aria-label="Bidding strategy decision flow">
+            <svg viewBox="0 0 520 300" role="img" aria-label="Flow diagram for choosing a bidding strategy">
+              <text x="16" y="26" font-size="14" fill="rgba(11,18,32,.92)" font-weight="900">
+                Simple decision flow for choosing bidding strategy
+              </text>
+              <defs>
+                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="rgba(2,6,23,.18)"/>
+                </filter>
+              </defs>
+
+              <rect x="26" y="55" width="468" height="56" rx="14" fill="rgba(37,99,235,.10)" stroke="rgba(37,99,235,.35)" filter="url(#shadow)"/>
+              <text x="45" y="88" font-size="13" fill="rgba(11,18,32,.92)" font-weight="900">Do you have consistent conversion data?</text>
+
+              <rect x="26" y="135" width="225" height="66" rx="14" fill="rgba(241,245,249,.95)" stroke="rgba(2,6,23,.16)"/>
+              <text x="45" y="164" font-size="12.5" fill="rgba(11,18,32,.92)" font-weight="900">No (new / low volume)</text>
+              <text x="45" y="186" font-size="12" fill="rgba(71,85,105,.95)" font-weight="800">→ Maximize Conversions</text>
+
+              <rect x="269" y="135" width="225" height="66" rx="14" fill="rgba(241,245,249,.95)" stroke="rgba(2,6,23,.16)"/>
+              <text x="288" y="164" font-size="12.5" fill="rgba(11,18,32,.92)" font-weight="900">Yes (stable volume)</text>
+              <text x="288" y="186" font-size="12" fill="rgba(71,85,105,.95)" font-weight="800">→ Target CPA / Value</text>
+
+              <rect x="26" y="220" width="468" height="62" rx="14" fill="rgba(22,163,74,.08)" stroke="rgba(22,163,74,.35)"/>
+              <text x="45" y="248" font-size="12.5" fill="rgba(11,18,32,.92)" font-weight="900">E-commerce + accurate revenue tracking?</text>
+              <text x="45" y="270" font-size="12" fill="rgba(71,85,105,.95)" font-weight="800">→ Consider Target ROAS</text>
+
+              <line x1="260" y1="111" x2="260" y2="135" stroke="rgba(2,6,23,.25)" stroke-width="2"/>
+              <line x1="140" y1="201" x2="140" y2="220" stroke="rgba(2,6,23,.20)" stroke-width="2"/>
+              <line x1="382" y1="201" x2="382" y2="220" stroke="rgba(2,6,23,.20)" stroke-width="2"/>
+            </svg>
+            <figcaption class="adsnord-caption">
+              Diagram: Choose bidding based on data maturity and business model.
+            </figcaption>
+          </figure>
+
+          <div class="adsnord-note good">
+            <b>Key Takeaway:</b> Bidding works only as well as your <b>conversion tracking</b>.
+          </div>
+          <div class="adsnord-note">
+            <b>Pro Tip:</b> For Google’s official explanation of bidding strategies, see:
+            <a href="https://support.google.com/google-ads/answer/7450050?hl=en" target="_blank" rel="noopener">About automated bidding</a>.
+          </div>
+        </article>
+
+        <!-- STEP 5 -->
+        <article class="adsnord-step" id="step-5">
+          <div class="label"><span class="num">5</span> Add Assets to Your Ads</div>
+          <h2>Step 5: Add Assets to Your Ads</h2>
+
+          <h3>What is this?</h3>
+          <p>Ad assets (extensions) add extra information to your ads—links, benefits, categories, calls, and location details—so your ads become more useful and more clickable.</p>
+
+          <h3>Why this matters</h3>
+          <p>Assets expand your ad real estate and help pre-qualify users before they click. This often improves CTR and lead quality without increasing spend.</p>
+
+          <h3>Focus Settings (How to set it up)</h3>
+          <ul class="adsnord-list">
+            <li>Sitelinks (send users to high-intent pages)</li>
+            <li>Callouts (highlight key benefits)</li>
+            <li>Structured snippets (show categories/services)</li>
+            <li>Call & location assets (especially for local)</li>
+            <li>Images (where supported)</li>
+          </ul>
+
+          <div class="adsnord-note good">
+            <b>Key Takeaway:</b> Assets improve both visibility and <b>conversion intent</b>.
+          </div>
+          <div class="adsnord-note">
+            <b>Pro Tip:</b> For official campaign success best practices, see:
+            <a href="https://support.google.com/google-ads/answer/10498850?hl=en" target="_blank" rel="noopener">Google Ads: campaign success guide</a>.
+          </div>
+        </article>
+
+        <!-- STEP 6 -->
+        <article class="adsnord-step" id="step-6">
+          <div class="label"><span class="num">6</span> Create Ad Groups</div>
+          <h2>Step 6: Create Ad Groups</h2>
+
+          <h3>What is this?</h3>
+          <p>An ad group is how you organize keywords and ads around a single user intent. This structure controls relevance—one of the biggest drivers of cost and conversion rate.</p>
+
+          <h3>Why this matters</h3>
+          <p>Broad ad groups reduce relevance, increase CPC, and lower conversion rate—because the message doesn’t match the searcher’s intent.</p>
+
+          <h3>Focus Settings (How to set it up)</h3>
+          <ul class="adsnord-list">
+            <li>One intent per ad group</li>
+            <li>Closely related keywords only</li>
+            <li>Ad copy matched to that intent</li>
+            <li>Landing page aligned with the message</li>
+          </ul>
+
+          <figure class="adsnord-figure" aria-label="Ad group structure comparison">
+            <svg viewBox="0 0 520 290" role="img" aria-label="Before and after diagram of ad group structure">
+              <text x="16" y="26" font-size="14" fill="rgba(11,18,32,.92)" font-weight="900">
+                Ad group structure: broad vs intent-based (before vs after)
+              </text>
+
+              <rect x="16" y="48" width="240" height="220" rx="16" fill="rgba(245,158,11,.07)" stroke="rgba(245,158,11,.32)"/>
+              <text x="34" y="78" font-size="13" fill="rgba(11,18,32,.92)" font-weight="900">Before: Broad</text>
+              <text x="34" y="106" font-size="12" fill="rgba(71,85,105,.95)" font-weight="800">• 1 ad group</text>
+              <text x="34" y="128" font-size="12" fill="rgba(71,85,105,.95)" font-weight="800">• many keywords</text>
+              <text x="34" y="150" font-size="12" fill="rgba(71,85,105,.95)" font-weight="800">• generic ads</text>
+              <text x="34" y="172" font-size="12" fill="rgba(71,85,105,.95)" font-weight="800">• mixed intent</text>
+
+              <rect x="264" y="48" width="240" height="220" rx="16" fill="rgba(22,163,74,.07)" stroke="rgba(22,163,74,.32)"/>
+              <text x="282" y="78" font-size="13" fill="rgba(11,18,32,.92)" font-weight="900">After: Intent-based</text>
+              <text x="282" y="106" font-size="12" fill="rgba(71,85,105,.95)" font-weight="800">• multiple ad groups</text>
+              <text x="282" y="128" font-size="12" fill="rgba(71,85,105,.95)" font-weight="800">• 1 intent each</text>
+              <text x="282" y="150" font-size="12" fill="rgba(71,85,105,.95)" font-weight="800">• matched ads</text>
+              <text x="282" y="172" font-size="12" fill="rgba(71,85,105,.95)" font-weight="800">• higher relevance</text>
+
+              <path d="M250 160 L270 160" stroke="rgba(2,6,23,.35)" stroke-width="3" />
+              <path d="M270 160 L262 154 L262 166 Z" fill="rgba(2,6,23,.35)" />
+            </svg>
+            <figcaption class="adsnord-caption">
+              Diagram: Intent-based ad groups typically improve relevance and efficiency versus “everything in one group.”
+            </figcaption>
+          </figure>
+
+          <div class="adsnord-note good">
+            <b>Key Takeaway:</b> Tighter ad groups improve relevance—often lowering cost and improving conversion rate.
+          </div>
+          <div class="adsnord-note">
+            <b>Pro Tip:</b> Google’s official Search campaign setup guide can help validate your structure:
+            <a href="https://support.google.com/google-ads/answer/9510373?hl=en" target="_blank" rel="noopener">Create a Search campaign</a>.
+          </div>
+        </article>
+
+        <!-- STEP 7 -->
+        <article class="adsnord-step" id="step-7">
+          <div class="label"><span class="num">7</span> Choose Your Focus</div>
+          <h2>Step 7: Choose Your Focus</h2>
+
+          <h3>What is this?</h3>
+          <p>Focus settings decide who sees your ads—location, language, audience signals, schedule, and device. This is where you control waste and improve relevance fast.</p>
+
+          <h3>Why this matters</h3>
+          <p>Even well-built campaigns fail when targeting is too broad or misaligned with your business reach—especially for local services.</p>
+
+          <h3>Focus Settings (How to set it up)</h3>
+          <ul class="adsnord-list">
+            <li>Location targeting (country, city, radius)</li>
+            <li>Language targeting</li>
+            <li>Audience signals (where applicable)</li>
+            <li>Ad schedule (hours/days)</li>
+            <li>Device focus (only if needed)</li>
+          </ul>
+
+          <div class="adsnord-note good">
+            <b>Key Takeaway:</b> Better focus often beats bigger reach.
+          </div>
+          <div class="adsnord-note">
+            <b>Pro Tip:</b> Need a second opinion on targeting and structure? Use the
+            <a href="https://adsnord.com/contact/" target="_blank" rel="noopener">Contact page</a> to request a review.
+          </div>
+        </article>
+
+        <!-- STEP 8 -->
+        <article class="adsnord-step" id="step-8">
+          <div class="label"><span class="num">8</span> Set Up Conversions</div>
+
+          <!-- ✅ SEO FIX (RankMath): focus keyword in another H2 subheading -->
+          <h2>Step 8: Google Ads Campaign Setup — Set Up Conversions</h2>
+
+          <h3>What is this?</h3>
+          <p>Conversion tracking tells Google which actions matter to your business—purchase, lead form, call, booking, or WhatsApp engagement—so bidding can optimize for outcomes, not clicks.</p>
+
+          <h3>Why this matters</h3>
+          <p>Google optimizes toward what you measure. If conversions are missing or wrong, automation learns the wrong goal and your performance plateaus.</p>
+
+          <h3>Focus Settings (How to set it up)</h3>
+          <ul class="adsnord-list">
+            <li>Purchases (e-commerce)</li>
+            <li>Lead forms (services)</li>
+            <li>Phone calls (local/service)</li>
+            <li>WhatsApp clicks (when tracked as an event)</li>
+            <li>Bookings / quote requests</li>
+          </ul>
+
+          <div class="adsnord-tablewrap" role="region" aria-label="Conversion tracking table" tabindex="0">
+            <table class="adsnord-table">
+              <thead>
+                <tr>
+                  <th>Conversion Type</th>
+                  <th>Use as Primary?</th>
+                  <th>Best For</th>
+                  <th>Risk if Misused</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b>Purchase</b></td>
+                  <td>Yes</td>
+                  <td>E-commerce</td>
+                  <td>Wrong value setup distorts ROAS</td>
+                </tr>
+                <tr>
+                  <td><b>Lead form</b></td>
+                  <td>Yes</td>
+                  <td>Services</td>
+                  <td>Spam leads if form is too easy</td>
+                </tr>
+                <tr>
+                  <td><b>Calls</b></td>
+                  <td>Sometimes</td>
+                  <td>Local + urgent services</td>
+                  <td>Counts low-quality calls if not filtered</td>
+                </tr>
+                <tr>
+                  <td><b>Page view</b></td>
+                  <td>No (usually)</td>
+                  <td>Awareness only</td>
+                  <td>Optimizes for clicks instead of outcomes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="adsnord-caption">Table: Choose primary conversions that reflect true business value.</div>
+
+          <div class="adsnord-note good">
+            <b>Key Takeaway:</b> Conversions are the core learning signal for Google Ads.
+          </div>
+          <div class="adsnord-note">
+            <b>Pro Tip:</b> For official measurement documentation, see:
+            <a href="https://support.google.com/google-ads/?hl=en" target="_blank" rel="noopener">Google Ads Help Center</a>.
+          </div>
+        </article>
+
+        <!-- ABOUT ADSNORD -->
+        <section class="adsnord-about" id="about" aria-label="About AdsNord">
+          <h2>About AdsNord</h2>
+          <p><b>AdsNord</b> is a performance-focused Google Ads team built around structured, data-driven campaign growth. We align goals, intent, structure, and measurement—so ad spend turns into leads, sales, and predictable ROI (not vanity metrics).</p>
+
+          <div class="adsnord-trust">
+            <div class="adsnord-box">
+              <strong>How we work</strong>
+              <div class="adsnord-pill">Process: Strategy → Structure → Tracking → Optimization</div>
+              <div class="adsnord-pill" style="margin-top:8px;">Focus: ROI outcomes, not clicks</div>
+            </div>
+
+            <div class="adsnord-box">
+              <strong>Tools & signals we use</strong>
+              <ul class="adsnord-list">
+                <li>Google Ads + measurement best practices</li>
+                <li>Conversion tracking and event-based signals</li>
+                <li>Intent mapping and funnel-level optimization</li>
+                <li>Continuous performance analysis and refinement</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="adsnord-mini">
+            Learn more on <a href="https://adsnord.com/about/" target="_blank" rel="noopener">About</a>, or explore
+            <a href="https://adsnord.com/services/google-ads-management/" target="_blank" rel="noopener">Google Ads Management</a>.
+          </p>
+        </section>
+
+        <!-- ✅ FINAL CTA: ONLY CONTACT -->
+        <section class="adsnord-final" id="final-cta" aria-label="Final call to action">
+          <h2>Ready to get your free Google Ads audit & action roadmap?</h2>
+          <p>Get clear next steps to improve structure, tracking, bidding, and lead quality—so your campaigns become easier to optimize and scale.</p>
+          <div class="adsnord-cta-row">
+            <a class="adsnord-btn primary" href="https://adsnord.com/contact/" target="_blank" rel="noopener">
+              ✅ Request your free audit via Contact
+            </a>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="adsnord-faq" id="faq" aria-label="Frequently Asked Questions">
+          <h2>Frequently Asked Questions</h2>
+
+          <details>
+            <summary>1) What is the best Google Ads campaign type for beginners?</summary>
+            <div class="ans">For most businesses, Search campaigns are the best starting point because they target high-intent users. Once conversion data is stable, you can expand into remarketing or Performance Max.</div>
+          </details>
+
+          <details>
+            <summary>2) How much budget do I need to start Google Ads?</summary>
+            <div class="ans">It depends on your industry and location, but you need enough budget to generate consistent clicks and conversions. If budget is limited, narrow targeting and start with a tight structure.</div>
+          </details>
+
+          <details>
+            <summary>3) Which bidding strategy should I start with?</summary>
+            <div class="ans">Many accounts start with Maximize Conversions to collect data. After stable volume, move to Target CPA (services) or Target ROAS (e-commerce) if tracking is accurate.</div>
+          </details>
+
+          <details>
+            <summary>4) Why are ad assets important?</summary>
+            <div class="ans">Assets increase ad visibility and help users understand your offer before clicking. That often improves CTR and lead quality without increasing cost.</div>
+          </details>
+
+          <details>
+            <summary>5) What’s the biggest reason Google Ads campaigns fail?</summary>
+            <div class="ans">Unclear goals, weak structure, and missing or incorrect conversion tracking. When the system doesn’t know what “success” is, optimization becomes expensive and unpredictable.</div>
+          </details>
+        </section>
+
+      </main>
+    </div>
+  </div>
+</section>
