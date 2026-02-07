@@ -1,0 +1,864 @@
+<style>
+/* Scoped reset (prevents mobile breakage from theme CSS) */
+.adsnord-wrapper,
+.adsnord-wrapper *{ box-sizing: border-box; }
+
+/* Make media elements responsive by default */
+.adsnord-wrapper img,
+.adsnord-wrapper svg,
+.adsnord-wrapper video,
+.adsnord-wrapper iframe{
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent long URLs/strings from blowing up mobile layouts */
+.adsnord-wrapper p,
+.adsnord-wrapper li,
+.adsnord-wrapper a{
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+  .adsnord-wrapper {
+    /* CSS variables scoped to this blog only */
+    --primary: #2563eb;
+    --primary-2: #1d4ed8;
+    --primary-glow: rgba(37, 99, 235, 0.12);
+    --accent-green: #22c55e;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --border: rgba(2, 6, 23, 0.12);
+    --bg-card: #ffffff;
+    --radius-lg: 24px;
+    --shadow: 0 12px 32px rgba(2, 6, 23, 0.09);
+    --shadow-hover: 0 16px 40px rgba(37, 99, 235, 0.18);
+  }
+
+  .adsnord-wrapper {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text-main);
+    line-height: 1.75;
+    background: linear-gradient(to bottom, #fdfdfe, #f8fafc);
+    scroll-behavior: smooth;
+  }
+
+  /* Progress Bar */
+  .reading-progress-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 5px;
+    background: #e2e8f0;
+  }
+  #reading-bar {
+    height: 100%;
+    background: linear-gradient(to right, var(--primary), var(--primary-2));
+    width: 0%;
+    transition: width 0.1s ease-out;
+  }
+
+  .adsnord-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  /* Hero */
+  .adsnord-hero {
+    background: radial-gradient(1200px at 15% 15%, var(--primary-glow), transparent), #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 48px 40px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+  }
+
+  .adsnord-eyebrow {
+    display: inline-flex;
+    background: var(--primary-glow);
+    color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border: 1px solid rgba(37, 99, 235, 0.15);
+  }
+
+  .adsnord-hero h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    margin: 0 0 20px;
+    display: block;
+  }
+
+  .adsnord-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .adsnord-meta span {
+    padding: 6px 14px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  /* ✅ ADDED: Hero split (paragraph left, image right) */
+  .hero-split{
+    display:flex;
+    align-items:center;
+    gap: 22px;
+    margin-top: 6px;
+  }
+  .hero-split .hero-copy{
+    flex: 1 1 62%;
+    min-width: 260px;
+  }
+  .hero-split .hero-media{
+    flex: 0 0 38%;
+    max-width: 420px;
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: var(--shadow);
+  }
+  .hero-split .hero-media img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+
+  /* ✅ ADDED: Visual card wrapper */
+  .viz-card{
+    margin: 24px 0;
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: #f8fafc;
+  }
+
+  /* Grid Layout */
+  .adsnord-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* Sticky TOC */
+  .adsnord-sidebar { position: sticky; top: 48px; }
+  .adsnord-toc {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .adsnord-toc h4 { margin: 0 0 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .adsnord-toc ul { list-style: none; padding: 0; margin: 0; }
+  .adsnord-toc a {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+  }
+  .adsnord-toc a:hover, .adsnord-toc a.active {
+    background: var(--primary-glow);
+    color: var(--primary);
+    transform: translateX(4px);
+  }
+
+  /* Content */
+  .adsnord-content {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 48px;
+    box-shadow: var(--shadow);
+  }
+
+  .content-section { scroll-margin-top: 120px; margin-bottom: 70px; }
+  .content-section h2 {
+    font-size: 2.1rem;
+    margin: 0 0 24px;
+    color: var(--text-main);
+    position: relative;
+    padding-bottom: 20px;
+    line-height: 1.3;
+    display: block;
+    width: 100%;
+  }
+  .content-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--primary-2));
+    border-radius: 2px;
+  }
+  .content-section h3 { font-size: 1.45rem; margin: 32px 0 16px; }
+
+  .divider {
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 50px 0;
+  }
+
+  /* Callouts & Pullquotes */
+  .callout {
+    padding: 24px;
+    border-radius: 18px;
+    margin: 32px 0;
+    border-left: 5px solid var(--primary);
+    background: #f0f7ff;
+  }
+  .callout-warn { border-color: #f59e0b; background: #fffbeb; }
+
+  .pullquote {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 24px 32px;
+    margin: 40px 0;
+    border-left: 6px solid var(--primary);
+    background: var(--primary-glow);
+    border-radius: 16px;
+    line-height: 1.4;
+  }
+
+  /* Checklist */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: #f8fafc;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .checklist li:hover { background: #f0f7ff; transform: translateX(4px); }
+  .check-icon { color: var(--accent-green); font-size: 1.4rem; line-height: 1; min-width: 24px; }
+
+  /* Author Bio Section */
+  .adsnord-author-box {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 30px;
+    background: #f8fafc;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    margin: 60px 0 30px;
+  }
+  .author-avatar {
+    width: 80px;
+    height: 80px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 800;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .author-text h4 { margin: 0 0 8px; font-size: 1.2rem; }
+  .author-text p { margin: 0; color: var(--text-muted); font-size: 0.95rem; }
+
+  /* Buttons */
+  .adsnord-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px;
+    background: var(--primary);
+    color: white !important;
+    text-decoration: none;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  }
+  .adsnord-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); background: var(--primary-2); }
+
+  .secondary-btn {
+    padding: 16px 32px;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .secondary-btn:hover { background: #f1f5f9; border-color: var(--primary); color: var(--primary); }
+
+  @media (max-width: 980px) {
+    .adsnord-grid { grid-template-columns: 1fr; gap: 18px; }
+    .adsnord-sidebar { display: none; position: relative; top: 0; }
+    .adsnord-author-box { flex-direction: column; text-align: center; }
+    .adsnord-content { padding: 28px; }
+    .adsnord-hero { padding: 32px 22px; margin-bottom: 22px; }
+
+    /* ✅ ADDED: stack hero copy + image on mobile */
+    .hero-split{ flex-direction: column; align-items: stretch; }
+    .hero-split .hero-media{ max-width: 100%; }
+  }
+
+  /* ✅ Mobile-first improvements (NO content change) */
+  .mobile-toc { display: none; }
+
+  @media (max-width: 980px){
+    .mobile-toc{
+      display:block;
+      margin: 0 0 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .mobile-toc summary{
+      list-style:none;
+      cursor:pointer;
+      padding: 14px 16px;
+      font-weight: 800;
+      color: var(--text-main);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .mobile-toc summary::-webkit-details-marker{display:none;}
+    .mobile-toc .mobile-toc-inner{
+      padding: 8px 10px 12px;
+      border-top: 1px solid var(--border);
+    }
+    .mobile-toc a{
+      display:block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      text-decoration:none;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .mobile-toc a:hover{ background: var(--primary-glow); color: var(--primary); }
+  }
+
+  @media (max-width: 600px){
+    .adsnord-container{ padding: 14px; }
+    .adsnord-hero h1{ font-size: clamp(26px, 7vw, 34px); }
+    .content-section h2{ font-size: 1.55rem; padding-bottom: 14px; }
+    .content-section h2::after{ width: 64px; }
+    .pullquote{ font-size: 1.1rem; padding: 18px 18px; }
+    .adsnord-meta span{ width: 100%; }
+    .adsnord-btn, .secondary-btn{ width: 100%; }
+  }
+
+  .adsnord-wrapper table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 24px 0; }
+  .adsnord-wrapper th, .adsnord-wrapper td { padding: 14px; border: 1px solid var(--border); text-align: center; }
+  th { background: var(--primary); color: white; font-weight: 600; }
+  tr:nth-child(even) { background: #f8fafc; }
+/* Extra small screens */
+@media (max-width: 480px){
+  .adsnord-content{ padding: 20px; }
+  .adsnord-hero{ padding: 26px 16px; }
+  .adsnord-eyebrow{ font-size: 13px; padding: 7px 12px; }
+  .checklist li{ padding: 12px 12px; gap: 10px; }
+  .adsnord-author-box{ padding: 22px; }
+  .adsnord-wrapper table{ font-size: 13px; }
+  .adsnord-wrapper th, .adsnord-wrapper td{ padding: 10px; }
+}
+
+/* Tablet tuning */
+@media (min-width: 981px) and (max-width: 1120px){
+  .adsnord-grid{ grid-template-columns: 300px 1fr; gap: 28px; }
+  .adsnord-content{ padding: 40px; }
+}
+</style>
+
+<div class="adsnord-wrapper">
+  <div class="reading-progress-wrap"><div id="reading-bar"></div></div>
+
+  <div class="adsnord-container">
+    <section class="adsnord-hero">
+      <div class="adsnord-eyebrow">AI Search • Google Ads • Strategy 2026</div>
+      <h1>AI Search Advertising Strategy: How Marketers Must Prepare for Google Ads in AI Search</h1>
+
+      <!-- ✅ ADDED ONLY: paragraph LEFT + image RIGHT (H1 unchanged) -->
+      <div class="hero-split">
+        <div class="hero-copy">
+          <p style="font-size: 19px; color: var(--text-muted); max-width: 780px;">AI Overviews, AI Mode, and conversational assistants are reshaping discovery. Whether ads appear inside assistants or not, attention is shifting toward AI-led answers — and advertisers must adapt now.</p>
+        </div>
+
+        <figure class="hero-media" aria-label="AI Search Advertising Strategy hero image">
+         <img
+  src="https://adsnord.com/wp-content/uploads/2026/02/ai-search-advertising-strategy-hero.webp"
+  alt="AI search advertising strategy for Google Ads in the AI-first search era"
+  width="1200"
+  height="675"
+  loading="eager"
+  decoding="async"
+  fetchpriority="high"
+/>
+
+        </figure>
+      </div>
+      
+      <div class="adsnord-meta">
+        <span><strong>Primary:</strong> AI search advertising strategy</span>
+        <span><strong>Updated:</strong> February 2026</span>
+      </div>
+
+      <div style="margin-top: 36px; display: flex; gap: 20px; flex-wrap: wrap;">
+        <a href="https://adsnord.com/" class="adsnord-btn">Get an AI-Search Readiness Audit →</a>
+        <a href="#action-plan" class="secondary-btn">Jump to Action Plan</a>
+      </div>
+    </section>
+
+    <!-- ✅ ADD-ONLY: RankMath helper (Fix #1: Focus keyword in H2) -->
+    <section class="content-section" id="ai-search-advertising-strategy-summary">
+      <h2>AI Search Advertising Strategy (2026): Quick Summary for Google Ads</h2>
+
+      <p style="color: var(--text-muted);">
+        This guide is built around one goal: a practical <strong>AI search advertising strategy</strong>
+        that helps marketers adapt Google Ads to AI Overviews, AI Mode, and conversational search behavior. <p><strong>Short answer:</strong> AI search advertising strategy in 2026 means optimizing Google Ads for AI Overviews, AI Mode, and first-party data signals—not just keywords.</p>
+
+      </p>
+
+      <p style="color: var(--text-muted);">
+        If you’re updating campaigns for 2026, use this <strong>AI search advertising strategy</strong>
+        to improve signal quality, protect measurement, and stay visible as AI-led discovery changes clicks and attribution.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <div class="adsnord-grid">
+      <aside class="adsnord-sidebar">
+        <nav class="adsnord-toc">
+          <h4>Table of Contents</h4>
+          <ul id="toc-list">
+            <li><a href="#intro" class="active">1. AI-First Search Era</a></li>
+            <li><a href="#debate">2. Ads in Gemini Debate</a></li>
+            <li><a href="#monetization">3. Monetization Pressure</a></li>
+            <li><a href="#shift">4. Shift to AI Discovery</a></li>
+            <li><a href="#messaging">5. AI-Proof Messaging</a></li>
+            <li><a href="#data">6. First-Party Data Advantage</a></li>
+            <li><a href="#brand">7. Brand Demand as a Moat</a></li>
+            <li><a href="#measurement">8. Beyond Last-Click</a></li>
+            <li><a href="#account">9. AI-Ready Account Setup</a></li>
+            <li><a href="#predictions">10. 2026 Predictions</a></li>
+            <li><a href="#data-visuals">Data Snapshot: CTR Impact</a></li>
+            <li><a href="#action-plan">11. Action Plan</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="adsnord-content">
+
+        <!-- ✅ Mobile/Tablet TOC (Added — does NOT change your content) -->
+        <details class="mobile-toc">
+          <summary>On this page <span style="opacity:.7;">▾</span></summary>
+          <div class="mobile-toc-inner">
+            <a href="#intro">1. AI-First Search Era</a>
+            <a href="#debate">2. Ads in Gemini Debate</a>
+            <a href="#monetization">3. Monetization Pressure</a>
+            <a href="#shift">4. Shift to AI Discovery</a>
+            <a href="#messaging">5. AI-Proof Messaging</a>
+            <a href="#data">6. First-Party Data Advantage</a>
+            <a href="#brand">7. Brand Demand as a Moat</a>
+            <a href="#measurement">8. Beyond Last-Click</a>
+            <a href="#account">9. AI-Ready Account Setup</a>
+            <a href="#predictions">10. 2026 Predictions</a>
+            <a href="#data-visuals">Data Snapshot: CTR Impact</a>
+            <a href="#action-plan">11. Action Plan</a>
+            <a href="#faq">FAQ</a>
+          </div>
+        </details>
+
+        <!-- ✅ EVERYTHING BELOW IS 100% YOUR ORIGINAL BLOG CONTENT (UNCHANGED) -->
+
+        <section id="intro" class="content-section">
+          <h2>1) Google Search Is Entering the AI-First Era</h2>
+          <p>The old model was simple: <strong>user searches → ads appear → clicks happen</strong>. With <strong>AI Overviews</strong> and <strong>AI Mode</strong>, Google is shifting users toward summarized, conversational answers — often before they reach websites.</p>
+          <div class="callout">
+            <strong>Why this matters for Google Ads:</strong> If AI answers satisfy the query, fewer clicks flow to both organic and paid results. This means higher competition for the remaining attention — and smarter signal optimization becomes essential.
+          </div>
+          <ul class="checklist">
+            <li><span class="check-icon">→</span>Less surface area for classic keyword capture</li>
+            <li><span class="check-icon">→</span>More “zero-click” journeys where AI resolves the question</li>
+            <li><span class="check-icon">→</span>Higher importance of brand trust and differentiation</li>
+          </ul>
+
+          <p style="margin-top:18px; color: var(--text-muted);">
+            This shift toward AI-led discovery requires more than keyword tweaks.
+            Our <a href="https://adsnord.com/services/" style="color: var(--primary); font-weight: 700; text-decoration: none;">Google Ads optimization services</a>
+            are designed to strengthen tracking, signals, and AI-ready account structure.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="debate" class="content-section">
+          <h2>2) Will Google Show Ads in Gemini? The Current Reality (Feb 2026)</h2>
+          <p>Reports in late 2025 suggested ads may appear inside the Gemini app, while Google execs (including VP of Global Ads Dan Taylor and DeepMind CEO Demis Hassabis) have repeatedly stated: no ads in the Gemini app, and no current plans to change that. The focus remains on monetizing AI search surfaces like AI Overviews and AI Mode — where ads are already live and performing well.</p>
+          <div class="pullquote">The strategic truth: Google doesn’t need ads inside the standalone Gemini app to monetize AI. Where attention flows in Search (Overviews, Mode, follow-ups), monetization follows — and it’s already happening there.</div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="monetization" class="content-section">
+          <h2>3) Why AI Monetization Pressure Is Inevitable</h2>
+          <p>AI infrastructure is expensive (chips, data centers, training). Historically, Google monetizes <strong>attention</strong>. Where attention goes, monetization follows. More AI compute leads to higher operating costs, which forces more pressure to monetize AI-led moments — especially in Search.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="shift" class="content-section">
+          <h2>4) From Keyword Advertising to AI-Led Discovery</h2>
+          <p>We’re moving from “who bids on the keyword” to “which brand does AI understand and trust.” In AI-led search, the interface filters choices earlier, compressing the funnel — making entity recognition, brand signals, and clear intent matching critical.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="messaging" class="content-section">
+          <h2>5) Build “AI-Proof” Messaging</h2>
+          <p>AI summarizes ruthlessly. If your value proposition is vague, AI will repeat vague. Use this checklist to make your offer crystal-clear and citation-worthy:</p>
+          <ul class="checklist">
+            <li><span class="check-icon">✓</span> One-sentence positioning: Can a buyer describe you in 10 seconds?</li>
+            <li><span class="check-icon">✓</span> Concrete outcomes: Numbers, timeframes, before/after results.</li>
+            <li><span class="check-icon">✓</span> Clear differentiation: What do you do differently than “any agency”?</li>
+            <li><span class="check-icon">✓</span> Proof assets: Case studies, testimonials, third-party validations.</li>
+          </ul>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="data" class="content-section">
+          <h2>6) First-Party Data: Your Competitive Advantage</h2>
+          <p>AI-driven Google Ads optimize on signals. If your signals are noisy (low-quality leads), automation scales the wrong outcomes. First-party data is how you tell the algorithm what actually matters — and protect against generic bidding.</p>
+          <h3>Minimum Implementation Stack:</h3>
+          <ul class="checklist">
+            <li><span class="check-icon">→</span>Enhanced conversions + offline imports</li>
+            <li><span class="check-icon">→</span>CRM uploads (Customer Match, similar audiences)</li>
+            <li><span class="check-icon">→</span>Lead quality scoring (MQL/SQL signals fed back)</li>
+          </ul>
+
+          <p style="margin-top:18px; color: var(--text-muted);">
+            These first-party data and offline conversion strategies are already working in real-world accounts.
+            See practical implementations in our <a href="https://adsnord.com/case-studies/" style="color: var(--primary); font-weight: 700; text-decoration: none;">Google Ads case studies</a>.
+          </p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="brand" class="content-section">
+          <h2>7) Brand Demand Is Now a Defensive Strategy</h2>
+          <p>AI assistants prefer familiar, credible brands. If buyers search your brand by name, AI can’t easily “replace” you with alternatives. Build this through YouTube education, Demand Gen campaigns, LinkedIn thought leadership, and consistent entity signals across the web.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="measurement" class="content-section">
+          <h2>8) Measurement: Beyond Last-Click ROAS</h2>
+          <p>AI journeys are non-linear. Track assisted conversions, branded search lift, view-through impact, and incrementality tests. If you only judge by last-click, you'll kill the campaigns creating future demand and brand recall.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="account" class="content-section">
+          <h2>9) Make Your Google Ads Account AI-Ready</h2>
+          <ul class="checklist">
+            <li><span class="check-icon">✓</span>Clear conversion hierarchy (Revenue &gt; Lead value tiers)</li>
+            <li><span class="check-icon">✓</span>Landing pages that match intent perfectly (fast, mobile-first, signal-rich)</li>
+            <li><span class="check-icon">✓</span>Creative coverage across multiple angles (responsive + asset groups)</li>
+          </ul>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="predictions" class="content-section">
+          <h2>10) Predictions for Google Ads (2026+)</h2>
+          <ul class="checklist">
+            <li><span class="check-icon">→</span>AI Overviews continue reducing organic CTR for position-1 content by 35–60% (when present; appears in ~10–30% of queries depending on type — per 2025/2026 studies like Ahrefs & Pew)</li>
+            <li><span class="check-icon">→</span>Paid visibility shifts further to mid-conversation placements in AI Mode & Overviews</li>
+            <li><span class="check-icon">→</span>First-party data + strong brand signals become the only way to avoid commoditized bidding and win AI attribution</li>
+          </ul>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="data-visuals" class="content-section">
+          <h2>Data Snapshot: AI Overviews CTR Impact (2025 Studies)</h2>
+          <p>Recent large-scale analyses (primarily Seer Interactive's September 2025 update, based on 25M+ impressions) show the real toll of AI Overviews on click-through rates — but also the massive advantage of being cited in them.</p>
+
+          <h3>CTR Comparison: With vs Without AI Overviews</h3>
+          <div style="overflow-x: auto; margin: 32px 0;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>Without AI Overviews</th>
+                  <th>With AI Overviews</th>
+                  <th>Change</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Organic CTR</td>
+                  <td>1.76%</td>
+                  <td>0.61%</td>
+                  <td style="color: #ef4444; font-weight: bold;">-61%</td>
+                </tr>
+                <tr>
+                  <td>Paid CTR</td>
+                  <td>19.7%</td>
+                  <td>6.34%</td>
+                  <td style="color: #ef4444; font-weight: bold;">-68%</td>
+                </tr>
+                <tr>
+                  <td>Organic CTR if Cited in AIO</td>
+                  <td>—</td>
+                  <td>+35% vs non-cited</td>
+                  <td style="color: var(--accent-green); font-weight: bold;">+35%</td>
+                </tr>
+                <tr>
+                  <td>Paid CTR if Cited in AIO</td>
+                  <td>—</td>
+                  <td>+91% vs non-cited</td>
+                  <td style="color: var(--accent-green); font-weight: bold;">+91%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Visual: CTR Drop vs Citation Uplift</h3>
+          <div style="margin: 40px auto; max-width: 700px; text-align: center;">
+            <svg viewBox="0 0 700 400" style="width: 100%; height: auto; background: #f8fafc; border-radius: 16px; padding: 20px; border: 1px solid var(--border);">
+              <rect x="80" y="220" width="100" height="140" fill="#2563eb" rx="8"/>
+              <rect x="220" y="300" width="100" height="60" fill="#ef4444" rx="8"/>
+              <rect x="360" y="160" width="100" height="200" fill="#22c55e" rx="8"/>
+              <rect x="500" y="100" width="100" height="260" fill="#22c55e" rx="8"/>
+              <text x="130" y="210" text-anchor="middle" font-size="15" fill="var(--text-main)">Organic Baseline</text>
+              <text x="270" y="290" text-anchor="middle" font-size="15" fill="var(--text-main)">With AIO (-61%)</text>
+              <text x="410" y="150" text-anchor="middle" font-size="15" fill="var(--text-main)">Cited Organic (+35%)</text>
+              <text x="550" y="90" text-anchor="middle" font-size="15" fill="var(--text-main)">Cited Paid (+91%)</text>
+              <text x="130" y="205" text-anchor="middle" font-size="16" font-weight="bold" fill="white">1.76%</text>
+              <text x="270" y="285" text-anchor="middle" font-size="16" font-weight="bold" fill="white">0.61%</text>
+              <text x="410" y="145" text-anchor="middle" font-size="16" font-weight="bold" fill="white">+35%</text>
+              <text x="550" y="85" text-anchor="middle" font-size="16" font-weight="bold" fill="white">+91%</text>
+            </svg>
+          </div>
+
+          <!-- ✅ ADDED ONLY: Pie/Donut Chart (SVG) -->
+          <h3>Visual: Example Share of Attention in AI-Led Discovery</h3>
+          <div class="viz-card" role="img" aria-label="Pie chart showing attention split across awareness, consideration, decision">
+            <svg viewBox="0 0 760 360" style="width:100%;height:auto;">
+              <g transform="translate(190,180)">
+                <circle r="92" fill="none" stroke="#e2e8f0" stroke-width="40"></circle>
+                <circle r="92" fill="none" stroke="#2563eb" stroke-width="40"
+                  stroke-dasharray="173 578" stroke-linecap="round"
+                  transform="rotate(-90)"></circle>
+                <circle r="92" fill="none" stroke="#22c55e" stroke-width="40"
+                  stroke-dasharray="173 578" stroke-linecap="round"
+                  transform="rotate(18)"></circle>
+                <circle r="92" fill="none" stroke="#0f172a" stroke-width="40"
+                  stroke-dasharray="231 578" stroke-linecap="round"
+                  transform="rotate(126)"></circle>
+                <circle r="62" fill="#ffffff"></circle>
+                <text text-anchor="middle" y="-6" font-size="16" font-weight="800" fill="#0f172a">Example</text>
+                <text text-anchor="middle" y="18" font-size="13" fill="#475569">Attention Split</text>
+              </g>
+
+              <g transform="translate(380,92)" font-size="14" fill="#0f172a">
+                <rect x="0" y="0" width="14" height="14" rx="3" fill="#2563eb"></rect>
+                <text x="22" y="12">Awareness — 30%</text>
+
+                <rect x="0" y="34" width="14" height="14" rx="3" fill="#22c55e"></rect>
+                <text x="22" y="46">Consideration — 30%</text>
+
+                <rect x="0" y="68" width="14" height="14" rx="3" fill="#0f172a"></rect>
+                <text x="22" y="80">Decision — 40%</text>
+
+                <text x="0" y="120" fill="#475569" font-size="12">
+                  (Adjust these numbers to match your real data.)
+                </text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="callout" style="margin-top: 26px;">
+            <strong>What we mean by credible citations</strong>
+            <p style="margin: 12px 0 0; color: var(--text-muted);">
+              Credible citations are references from trusted research organizations or industry studies
+              that support key claims. They help readers validate insights and help AI systems
+              understand where important data originates.
+            </p>
+
+            <ul style="margin: 12px 0 0; padding-left: 18px;">
+              <li>
+                AI Overviews CTR impact study:
+                <a href="https://www.seerinteractive.com/insights/aio-impact-on-google-ctr-september-2025-update"
+                   target="_blank" rel="noopener"
+                   style="color: var(--primary); font-weight: 700; text-decoration: none;">Seer Interactive research</a>
+              </li>
+              <li>
+                User behavior with AI summaries:
+                <a href="https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/"
+                   target="_blank" rel="noopener"
+                   style="color: var(--primary); font-weight: 700; text-decoration: none;">Pew Research Center analysis</a>
+              </li>
+            </ul>
+          </div>
+
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="action-plan" class="content-section">
+          <h2>11) What to Do Now: Action Plan</h2>
+          <div style="background: #f8fafc; padding: 36px; border-radius: 20px; border: 1px solid var(--border);">
+            <h3>Immediate Steps (Next 30 Days):</h3>
+            <ul class="checklist">
+              <li><span class="check-icon">→</span> <strong>Audit your messaging:</strong> Test if AI (Gemini/ChatGPT) summarizes your offer accurately and favorably</li>
+              <li><span class="check-icon">→</span> <strong>Upgrade tracking:</strong> Implement Offline Conversion Imports + enhanced conversions</li>
+              <li><span class="check-icon">→</span> <strong>Build Brand:</strong> Launch or scale YouTube/Demand Gen for branded education</li>
+            </ul>
+            <p style="margin-top:18px; color: var(--text-muted);">
+              The fastest win is aligning your tracking and conversion signals to an <strong>AI search advertising strategy</strong>
+              that matches how buyers research in AI Mode and AI Overviews.
+            </p>
+
+          </div>
+        </section>
+
+        <div class="adsnord-author-box">
+          <div class="author-avatar">AN</div>
+          <div class="author-text">
+            <h4>Written by the AdsNord Strategy Team</h4>
+            <p>At AdsNord, we specialize in future-proofing Google Ads accounts. Our experts focus on advanced signal optimization, first-party data integration, and helping brands maintain a dominant presence in the evolving AI search landscape.</p>
+          </div>
+        </div>
+
+        <p style="margin: 0 0 30px; color: var(--text-muted);">
+          Learn more about the team and methodology behind these AI search frameworks on our
+          <a href="https://adsnord.com/about/" style="color: var(--primary); font-weight: 700; text-decoration: none;">About page</a>.
+        </p>
+
+        <div style="text-align: center; margin: 40px 0 60px; padding: 48px 32px; border: 2px solid var(--primary); background: var(--primary-glow); border-radius: 20px;">
+          <h3 style="font-size: 2rem; margin-bottom: 16px;">Ready to lead in the AI Era?</h3>
+          <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 28px;">Get a no-fluff diagnostic roadmap to strengthen tracking, messaging, and AI resilience.</p>
+          <a href="https://adsnord.com/" class="adsnord-btn" style="font-size: 18px; padding: 18px 40px;">Request a Free Google Ads Audit →</a>
+          <p style="margin-top: 20px; font-size: 14px; font-weight: 600;">Hire a Google Ads Expert specialized in AI Advertising.</p>
+        </div>
+
+        <section id="faq" class="content-section">
+          <h2>FAQ</h2>
+          <details style="padding: 18px; border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; background: #f8fafc;">
+            <summary style="font-weight: 700; cursor: pointer; font-size: 16px;">How do I Hire a Google Ads Expert for AI Search?</summary>
+            <p style="margin-top: 16px;">Look for contractors who prioritize first-party data pipelines, lead quality scoring, and entity/brand authority over pure volume tactics. Ask about their experience with AI Mode placements and incrementality measurement.</p>
+          </details>
+          <details style="padding: 18px; border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; background: #f8fafc;">
+            <summary style="font-weight: 700; cursor: pointer; font-size: 16px;">Can I request a Google Ads audit for AI readiness?</summary>
+            <p style="margin-top: 16px;">Yes — AdsNord offers specialized audits focused on AI-search readiness, including signal health, messaging strength, and future-proof account structure. <a href="https://adsnord.com/" style="color: var(--primary); font-weight: 600;">Request your Free Google Ads Audit here</a>.</p>
+          </details>
+          <details style="padding: 18px; border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; background: #f8fafc;">
+            <summary style="font-weight: 700; cursor: pointer; font-size: 16px;">What is a Professional Google Ads Contractor's role in 2026?</summary>
+            <p style="margin-top: 16px;">A contractor in 2026 must act as a data strategist. Their role is to manage the flow of first-party data into Google's AI models, ensuring the algorithm optimizes for high-profit customers rather than just generic lead volume.</p>
+          </details>
+          <details style="padding: 18px; border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; background: #f8fafc;">
+            <summary style="font-weight: 700; cursor: pointer; font-size: 16px;">How do I Contact adsnord for a custom quote?</summary>
+            <p style="margin-top: 16px;">You can <a href="https://adsnord.com/" style="color: var(--primary); font-weight: 600;">Contact adsnord</a> directly via our website to Request a Quote. We provide custom strategies tailored to your industry's specific AI search landscape.</p>
+          </details>
+          <details style="padding: 18px; border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; background: #f8fafc;">
+            <summary style="font-weight: 700; cursor: pointer; font-size: 16px;">Why is branded search more important in the AI era?</summary>
+            <p style="margin-top: 16px;">Branded search serves as your "moat." When a user searches for your brand specifically, AI assistants are forced to provide information about you rather than generic industry alternatives. This reduces the risk of AI Overviews siphoning away your traffic.</p>
+          </details>
+        </section>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById("reading-bar").style.width = scrolled + "%";
+    
+    const sections = document.querySelectorAll(".content-section");
+    const navLinks = document.querySelectorAll(".adsnord-toc a");
+    let current = "";
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (pageYOffset >= sectionTop - 140) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove("active");
+      if (link.getAttribute("href").includes(current)) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
+
+<!-- ✅ ADDED ONLY: Schema (Article + FAQ). No edits to your content. -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"AI Search Advertising Strategy: How Marketers Must Prepare for Google Ads in AI Search",
+  "dateModified":"2026-02-01",
+  "author":{"@type":"Organization","name":"AdsNord Strategy Team"},
+  "publisher":{"@type":"Organization","name":"AdsNord","url":"https://adsnord.com/"},
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://adsnord.com/blog/google-ads-optimization/ai-search-advertising-strategy/"},
+  "image":["https://adsnord.com/wp-content/uploads/2026/02/ai-search-advertising-strategy-hero.webp"]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"How do I Hire a Google Ads Expert for AI Search?",
+      "acceptedAnswer":{"@type":"Answer","text":"Look for contractors who prioritize first-party data pipelines, lead quality scoring, and entity/brand authority over pure volume tactics. Ask about their experience with AI Mode placements and incrementality measurement."}
+    },
+    {
+      "@type":"Question",
+      "name":"Can I request a Google Ads audit for AI readiness?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes — AdsNord offers specialized audits focused on AI-search readiness, including signal health, messaging strength, and future-proof account structure."}
+    }
+  ]
+}
+</script>
