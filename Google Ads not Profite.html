@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Why Your Google Ads Are Not Profitable (And The System That Fixes It) | AdsNord</title>
+  <meta name="description" content="If your Google Ads are not profitable—high CPA, unstable ROAS, or clicks without conversions—use this 4-layer system to diagnose the root cause and improve ROI." />
+  <!-- Optional: replace with the final post URL -->
+  <!-- <link rel="canonical" href="https://adsnord.com/blog/google-ads-not-profitable/" /> -->
+
+  <!-- FAQ Schema (JSON-LD) for rich results -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why are my Google Ads not profitable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually intent mismatch, noisy conversion signals, poor structure, or landing page friction. Use the 4-layer order to diagnose instead of guessing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I improve Google Ads ROI quickly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reduce query waste first, then stabilize structure and signals, then improve conversion efficiency. Don’t scale before diagnosis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my CPA so high on Google Ads?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "High CPA usually comes from weak intent, low conversion rate, unclear offer/message match, or tracking noise that misleads bidding."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do negative keywords still matter with smart bidding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Smart bidding optimizes bids—not intent. Negatives reduce noise and protect conversion signals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I audit my Google Ads account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Weekly light checks, monthly deep audits, and quarterly architecture reviews—especially before scaling."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+<!-- ===== AdsNord Pillar Blog (Elementor-ready / Custom HTML Widget) ===== -->
+<section id="adsnord-pillar" class="adsnord-pillar">
+
+  <style>
+    /* ===== Scoped styles (won't affect your whole site) ===== */
+    #adsnord-pillar { font-family: inherit; line-height: 1.75; }
+    #adsnord-pillar .container { max-width: 1060px; margin: 0 auto; padding: 18px 14px; }
+    #adsnord-pillar h1 { font-size: 2rem; line-height: 1.15; margin: 0 0 10px; }
+    #adsnord-pillar h2 { font-size: 1.5rem; line-height: 1.25; margin: 40px 0 10px; }
+    #adsnord-pillar h3 { font-size: 1.12rem; margin: 18px 0 8px; }
+    #adsnord-pillar p { margin: 10px 0; }
+    #adsnord-pillar ul, #adsnord-pillar ol { margin: 10px 0 10px 20px; }
+    #adsnord-pillar li { margin: 6px 0; }
+    #adsnord-pillar a { text-underline-offset: 3px; }
+
+    /* Hero */
+    #adsnord-pillar .hero {
+      background: #f8fafc;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      padding: 18px 14px;
+      border-radius: 18px;
+    }
+    #adsnord-pillar .lede { font-size: 1.02rem; margin-top: 8px; }
+    #adsnord-pillar .bullets { margin: 12px 0 12px 18px; }
+    #adsnord-pillar .micro { font-size: 0.93rem; opacity: 0.9; margin-top: 10px; }
+    #adsnord-pillar .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 14px 16px; border-radius: 14px; text-decoration: none; font-weight: 800;
+      border: 1px solid rgba(15, 23, 42, 0.12);
+    }
+    #adsnord-pillar .btn-primary { background: #25D366; color: #ffffff; border: none; }
+    #adsnord-pillar .learn {
+      margin-top: 14px; padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      background: #ffffff;
+    }
+    #adsnord-pillar .learn strong { display: inline-block; margin-bottom: 6px; }
+
+    /* TOC (accordion — mobile-first) */
+    #adsnord-pillar .toc {
+      margin-top: 14px; padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      background: #ffffff;
+    }
+    #adsnord-pillar .toc summary { cursor: pointer; font-weight: 900; }
+    #adsnord-pillar .toc a { text-decoration: none; border-bottom: 1px dotted rgba(15, 23, 42, 0.35); }
+
+    /* Two-column text + image (desktop), stacked (mobile) */
+    #adsnord-pillar .two-col { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: center; margin: 18px 0; }
+    @media (min-width: 900px) { #adsnord-pillar .two-col { grid-template-columns: 1.1fr 1fr; gap: 26px; } }
+
+    /* Visual cards */
+    #adsnord-pillar .viz {
+      margin: 14px 0; padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      background: #ffffff;
+    }
+    #adsnord-pillar .viz-title { font-weight: 900; margin-bottom: 8px; }
+    #adsnord-pillar svg { width: 100%; height: auto; display: block; }
+    #adsnord-pillar figure { margin: 0; }
+    #adsnord-pillar img { width: 100%; height: auto; border-radius: 14px; border: 1px solid rgba(15, 23, 42, 0.08); }
+    #adsnord-pillar figcaption { font-size: 0.93rem; opacity: 0.9; margin-top: 8px; }
+
+    /* Tables (with color) */
+    #adsnord-pillar .table-wrap {
+      overflow-x: auto;
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      background: #ffffff;
+      margin: 14px 0;
+    }
+    #adsnord-pillar table { width: 100%; border-collapse: collapse; min-width: 720px; }
+    #adsnord-pillar th {
+      padding: 12px; text-align: left; color: #ffffff;
+      background: linear-gradient(90deg, #2563EB, #14B8A6);
+      position: sticky; top: 0;
+    }
+    #adsnord-pillar td { padding: 12px; border-bottom: 1px solid rgba(15, 23, 42, 0.08); }
+    #adsnord-pillar tbody tr:nth-child(even) { background: #f1f5f9; }
+
+    /* Callout box */
+    #adsnord-pillar .callout {
+      margin: 18px 0; padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      background: #f8fafc;
+    }
+    #adsnord-pillar .callout strong { font-weight: 900; }
+
+    /* Secondary CTA (ONLY one button here — Contact) */
+    #adsnord-pillar .cta-block {
+      margin: 26px 0 10px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      background: #f8fafc;
+      text-align: center;
+    }
+    #adsnord-pillar .btn-secondary { background: #0F172A; color: #ffffff; border: none; }
+
+    /* FAQ + Author */
+    #adsnord-pillar .faq details {
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      background: #ffffff;
+      padding: 12px 14px;
+      margin: 10px 0;
+    }
+    #adsnord-pillar .faq summary { cursor: pointer; font-weight: 900; }
+    #adsnord-pillar .author {
+      margin-top: 28px; padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(15, 23, 42, 0.10);
+      background: #ffffff;
+    }
+  </style>
+
+  <div class="container">
+
+    <!-- ===== HERO ===== -->
+    <header class="hero" id="top">
+      <h1>Why Your Google Ads Are Not Profitable (And The System That Fixes It)</h1>
+
+      <p class="lede">
+        If your <strong>google ads not profitable</strong> performance looks like high CPA, unstable ROAS, or clicks without conversions —
+        the issue is rarely “budget” alone. It’s usually structural.
+      </p>
+
+      <ul class="bullets">
+        <li><strong>High CPA</strong> that keeps rising</li>
+        <li><strong>Low or volatile ROAS</strong> that never stabilizes</li>
+        <li><strong>Clicks but no conversions</strong> (or low-quality leads)</li>
+      </ul>
+
+      <!-- Primary CTA (ONLY one button in hero) -->
+      <a class="btn btn-primary" href="https://wa.me/46764304702" target="_blank" rel="noopener">
+        📲 Get a Free Google Ads Profitability Review on WhatsApp
+      </a>
+
+      <p class="micro">No obligation • Quick diagnostic chat • Mobile-first recommendations</p>
+
+      <!-- What you will learn -->
+      <div class="learn">
+        <strong>What you will learn in this blog</strong>
+        <ul>
+          <li>The 4 structural reasons Google Ads become unprofitable</li>
+          <li>How to <strong>improve google ads roi</strong> without increasing spend</li>
+          <li>Why <strong>high cpa google ads</strong> accounts usually fail</li>
+          <li>Why <strong>why google ads not converting</strong> is often a system problem</li>
+          <li>The correct order to fix performance (so you don’t guess)</li>
+        </ul>
+      </div>
+
+      <!-- TOC -->
+      <details class="toc" open>
+        <summary>Table of contents</summary>
+        <ol>
+          <li><a href="#symptoms">Symptoms checklist</a></li>
+          <li><a href="#framework">The 4-layer performance system</a></li>
+          <li><a href="#layer1">Layer 1: Intent &amp; query control</a></li>
+          <li><a href="#layer2">Layer 2: Structure &amp; budget logic</a></li>
+          <li><a href="#layer3">Layer 3: Audit &amp; signal integrity</a></li>
+          <li><a href="#layer4">Layer 4: Conversion &amp; landing page system</a></li>
+          <li><a href="#order">Fix order</a></li>
+          <li><a href="#scaling">Scaling rules</a></li>
+          <li><a href="#checklist">10-point checklist</a></li>
+          <li><a href="#cta2">Next step</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#author">Author</a></li>
+        </ol>
+      </details>
+    </header>
+
+    <!-- ===== SECTION: SYMPTOMS ===== -->
+    <section id="symptoms">
+      <h2>The real symptoms of an unprofitable Google Ads account</h2>
+      <p>
+        When people search “google ads losing money” or “google ads not making sales,” they usually see the same patterns:
+        CPA rises, ROAS fluctuates, and scaling makes performance worse. That’s diagnostic — not random.
+      </p>
+
+      <div class="two-col">
+        <div>
+          <h3>Quick diagnostic signs</h3>
+          <ul>
+            <li>High CPA despite stable impressions</li>
+            <li>ROAS volatility week to week</li>
+            <li>Clicks without conversions (or low-quality leads)</li>
+            <li>Performance drops when you increase budget</li>
+          </ul>
+
+          <div class="callout">
+            <strong>Key idea:</strong> Profitability is not a “setting.” It’s the result of alignment across intent, structure, signals, and conversion.
+          </div>
+        </div>
+
+        <figure>
+          <img src="https://adsnord.com/wp-content/uploads/2026/02/high-cpa-google-ads-diagnostic-chart.webp"
+               alt="comparison chart showing high cpa and unstable roas in unprofitable Google Ads"
+               loading="lazy" width="1600" height="900" />
+          <figcaption>Quick diagnostic: CPA, ROAS stability, and conversion rate signals.</figcaption>
+        </figure>
+      </div>
+
+      <!-- Visual 1 (SVG bar chart — extra visual, ready-coded) -->
+      <div class="viz" aria-label="Visual 1: Bar chart comparing healthy vs unprofitable signals">
+        <div class="viz-title">Visual 1 — Healthy vs Unprofitable (illustrative)</div>
+        <svg viewBox="0 0 900 360" role="img" aria-label="Bar chart comparing CPA, ROAS stability, and conversion rate">
+          <line x1="60" y1="300" x2="860" y2="300" stroke="rgba(15,23,42,0.35)" stroke-width="2"/>
+          <line x1="60" y1="40"  x2="60"  y2="300" stroke="rgba(15,23,42,0.35)" stroke-width="2"/>
+
+          <text x="140" y="335" font-size="18" fill="rgba(15,23,42,0.8)">CPA</text>
+          <text x="390" y="335" font-size="18" fill="rgba(15,23,42,0.8)">ROAS Stability</text>
+          <text x="700" y="335" font-size="18" fill="rgba(15,23,42,0.8)">Conversion Rate</text>
+
+          <rect x="640" y="55" width="18" height="18" fill="rgba(37,99,235,0.25)"></rect>
+          <text x="665" y="69" font-size="16" fill="rgba(15,23,42,0.8)">Healthy</text>
+          <rect x="740" y="55" width="18" height="18" fill="rgba(220,38,38,0.35)"></rect>
+          <text x="765" y="69" font-size="16" fill="rgba(15,23,42,0.8)">Unprofitable</text>
+
+          <!-- CPA -->
+          <rect x="120" y="210" width="70" height="90" fill="rgba(37,99,235,0.25)"></rect>
+          <rect x="200" y="120" width="70" height="180" fill="rgba(220,38,38,0.35)"></rect>
+
+          <!-- ROAS stability -->
+          <rect x="390" y="120" width="70" height="180" fill="rgba(37,99,235,0.25)"></rect>
+          <rect x="470" y="230" width="70" height="70"  fill="rgba(220,38,38,0.35)"></rect>
+
+          <!-- CVR -->
+          <rect x="700" y="150" width="70" height="150" fill="rgba(37,99,235,0.25)"></rect>
+          <rect x="780" y="250" width="70" height="50"  fill="rgba(220,38,38,0.35)"></rect>
+        </svg>
+        <p class="micro">Illustrative comparison to help readers recognize “google ads not profitable” symptoms quickly.</p>
+      </div>
+    </section>
+
+    <!-- ===== SECTION: FRAMEWORK ===== -->
+    <section id="framework">
+      <h2>The 4-layer performance system behind “Google Ads not profitable”</h2>
+      <p>
+        A real <strong>google ads optimization strategy</strong> is not tactics — it’s alignment across four layers. If one layer breaks, profitability drops.
+      </p>
+
+      <div class="two-col">
+        <div>
+          <h3>Why this framework works</h3>
+          <ul>
+            <li><strong>Layer 1:</strong> Intent control stops wasted spend at the source</li>
+            <li><strong>Layer 2:</strong> Structure &amp; budgets produce clean learning</li>
+            <li><strong>Layer 3:</strong> Signal integrity prevents “optimizing blind”</li>
+            <li><strong>Layer 4:</strong> Conversion system turns clicks into outcomes</li>
+          </ul>
+
+          <p>
+            Helpful pages:
+            <a href="https://adsnord.com/services/" target="_blank" rel="noopener">Services</a> •
+            <a href="https://adsnord.com/about/" target="_blank" rel="noopener">About</a> •
+            <a href="https://adsnord.com/blog/google-ads-optimization/google-ads-campaign-setup/" target="_blank" rel="noopener">Campaign Setup</a>
+          </p>
+        </div>
+
+        <figure>
+          <img src="https://adsnord.com/wp-content/uploads/2026/02/google-ads-not-profitable-framework.webp"
+               alt="4-layer system explaining why google ads are not profitable"
+               loading="lazy" width="1600" height="900" />
+          <figcaption>AdsNord 4-Layer Performance System (Intent → Structure → Audit → Conversion).</figcaption>
+        </figure>
+      </div>
+
+      <!-- Visual 3: Process Flow (SVG) -->
+      <div class="viz" aria-label="Visual 3: Process flow from query to sale">
+        <div class="viz-title">Visual 3 — From search query to sale (mobile-first)</div>
+        <svg viewBox="0 0 900 260" role="img" aria-label="Flow diagram: Search Query to Conversion">
+          <rect x="60"  y="70" width="150" height="70" rx="14" fill="rgba(20,184,166,0.18)"></rect>
+          <text x="82" y="112" font-size="18" fill="rgba(15,23,42,0.9)">Search Query</text>
+
+          <rect x="240" y="70" width="150" height="70" rx="14" fill="rgba(245,158,11,0.18)"></rect>
+          <text x="262" y="112" font-size="18" fill="rgba(15,23,42,0.9)">Keyword Match</text>
+
+          <rect x="420" y="70" width="120" height="70" rx="14" fill="rgba(37,99,235,0.18)"></rect>
+          <text x="456" y="112" font-size="18" fill="rgba(15,23,42,0.9)">Ad</text>
+
+          <rect x="570" y="70" width="190" height="70" rx="14" fill="rgba(124,58,237,0.18)"></rect>
+          <text x="595" y="112" font-size="18" fill="rgba(15,23,42,0.9)">Landing Page</text>
+
+          <rect x="790" y="70" width="90" height="70" rx="14" fill="rgba(15,23,42,0.08)"></rect>
+          <text x="800" y="112" font-size="18" fill="rgba(15,23,42,0.9)">Sale</text>
+
+          <line x1="210" y1="105" x2="240" y2="105" stroke="rgba(15,23,42,0.35)" stroke-width="3"/>
+          <polygon points="240,105 232,99 232,111" fill="rgba(15,23,42,0.35)"></polygon>
+
+          <line x1="390" y1="105" x2="420" y2="105" stroke="rgba(15,23,42,0.35)" stroke-width="3"/>
+          <polygon points="420,105 412,99 412,111" fill="rgba(15,23,42,0.35)"></polygon>
+
+          <line x1="540" y1="105" x2="570" y2="105" stroke="rgba(15,23,42,0.35)" stroke-width="3"/>
+          <polygon points="570,105 562,99 562,111" fill="rgba(15,23,42,0.35)"></polygon>
+
+          <line x1="760" y1="105" x2="790" y2="105" stroke="rgba(15,23,42,0.35)" stroke-width="3"/>
+          <polygon points="790,105 782,99 782,111" fill="rgba(15,23,42,0.35)"></polygon>
+
+          <text x="60" y="190" font-size="14" fill="rgba(15,23,42,0.75)">
+            Break any step → profitability drops. Diagnose the system, not just one setting.
+          </text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ===== LAYER 1 ===== -->
+    <section id="layer1">
+      <h2>Layer 1: Intent &amp; query control</h2>
+      <p>
+        Wrong traffic is expensive traffic. Many <strong>high cpa google ads</strong> accounts fail because of weak intent control.
+        If you fix nothing else first, fix intent.
+      </p>
+
+      <!-- Visual 4: Line chart -->
+      <div class="viz" aria-label="Visual 4: CPA trend before and after intent control">
+        <div class="viz-title">Visual 4 — Query waste vs CPA over time (illustrative)</div>
+        <svg viewBox="0 0 900 360" role="img" aria-label="Line chart comparing CPA trend with and without intent control">
+          <line x1="60" y1="300" x2="860" y2="300" stroke="rgba(15,23,42,0.35)" stroke-width="2"/>
+          <line x1="60" y1="40"  x2="60"  y2="300" stroke="rgba(15,23,42,0.35)" stroke-width="2"/>
+          <text x="65" y="30" font-size="14" fill="rgba(15,23,42,0.75)">CPA</text>
+          <text x="820" y="330" font-size="14" fill="rgba(15,23,42,0.75)">Time</text>
+
+          <polyline fill="none" stroke="rgba(220,38,38,0.55)" stroke-width="4"
+            points="80,240 180,230 280,210 380,190 480,160 580,130 680,100 820,70" />
+          <text x="640" y="95" font-size="14" fill="rgba(15,23,42,0.8)">No intent control</text>
+
+          <polyline fill="none" stroke="rgba(22,163,74,0.55)" stroke-width="4"
+            points="80,240 180,225 280,230 380,220 480,215 580,220 680,218 820,220" />
+          <text x="640" y="235" font-size="14" fill="rgba(15,23,42,0.8)">Intent-controlled</text>
+        </svg>
+      </div>
+
+      <h3>Negative keyword architecture (layered)</h3>
+      <div class="table-wrap">
+        <table aria-label="Negative keyword layers table">
+          <thead>
+            <tr><th>Level</th><th>Purpose</th><th>Examples</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Account-level</td><td>Block universal junk</td><td>free, tutorial, meaning</td></tr>
+            <tr><td>Campaign-level</td><td>Intent separation</td><td>jobs, careers, salary</td></tr>
+            <tr><td>Ad group-level</td><td>Precision filtering</td><td>wrong variants, irrelevant use cases</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Use the tool to analyze keyword intent:
+        <a href="https://adsnord.com/tools/keyword-analyzer/" target="_blank" rel="noopener">AdsNord Keyword Analyzer</a>.
+      </p>
+    </section>
+
+    <!-- ===== LAYER 2 ===== -->
+    <section id="layer2">
+      <h2>Layer 2: Campaign structure &amp; budget logic</h2>
+      <p>
+        Structure decides what Google learns. Mixed intent creates mixed signals — and mixed signals create unstable profitability.
+      </p>
+
+      <div class="viz" aria-label="Visual 5: Budget allocation model">
+        <div class="viz-title">Visual 5 — Budget allocation model (illustrative)</div>
+        <svg viewBox="0 0 900 260" role="img" aria-label="Bar chart showing budget allocation: core, test, brand">
+          <text x="60" y="55" font-size="16" fill="rgba(15,23,42,0.85)">Core</text>
+          <rect x="150" y="38" width="620" height="26" rx="10" fill="rgba(37,99,235,0.35)"></rect>
+          <text x="785" y="55" font-size="14" fill="rgba(15,23,42,0.85)">70%</text>
+
+          <text x="60" y="120" font-size="16" fill="rgba(15,23,42,0.85)">Test</text>
+          <rect x="150" y="103" width="177" height="26" rx="10" fill="rgba(245,158,11,0.35)"></rect>
+          <text x="340" y="120" font-size="14" fill="rgba(15,23,42,0.85)">20%</text>
+
+          <text x="60" y="185" font-size="16" fill="rgba(15,23,42,0.85)">Brand</text>
+          <rect x="150" y="168" width="88" height="26" rx="10" fill="rgba(20,184,166,0.35)"></rect>
+          <text x="245" y="185" font-size="14" fill="rgba(15,23,42,0.85)">10%</text>
+        </svg>
+        <p class="micro">Bar chart shows hierarchy better than pie charts for budget allocation.</p>
+      </div>
+    </section>
+
+    <!-- ===== LAYER 3 ===== -->
+    <section id="layer3">
+      <h2>Layer 3: Audit &amp; signal integrity</h2>
+      <p>
+        If tracking is off by 10–15%, your bidding decisions can be 100% wrong. Signal quality is a common hidden reason for
+        <strong>google ads not profitable</strong> performance.
+      </p>
+
+      <div class="table-wrap">
+        <table aria-label="Impact vs Effort prioritization table">
+          <thead>
+            <tr><th>Issue</th><th>Impact</th><th>Confidence</th><th>Effort</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Duplicate conversions</td><td>High</td><td>High</td><td>Low</td><td>Fix first</td></tr>
+            <tr><td>Low-quality lead signals</td><td>High</td><td>Medium</td><td>Medium</td><td>Fix early</td></tr>
+            <tr><td>Missing enhanced conversions</td><td>Medium</td><td>Medium</td><td>Medium</td><td>Fix soon</td></tr>
+            <tr><td>Mixed-intent structure</td><td>High</td><td>High</td><td>High</td><td>Plan rebuild</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        External references:
+        <a href="https://support.google.com/google-ads/" target="_blank" rel="noopener">Google Ads Help Center</a> •
+        <a href="https://support.google.com/analytics/" target="_blank" rel="noopener">Google Analytics Help</a>
+      </p>
+    </section>
+
+    <!-- ===== LAYER 4 ===== -->
+    <section id="layer4">
+      <h2>Layer 4: Conversion &amp; landing page system</h2>
+      <p>
+        “<strong>why google ads not converting</strong>” is often caused by message mismatch, friction, and missing proof.
+        Clicks are intent — conversions require clarity.
+      </p>
+
+      <div class="viz" aria-label="Visual 7: Funnel drop-off chart">
+        <div class="viz-title">Visual 7 — Funnel drop-off (illustrative)</div>
+        <svg viewBox="0 0 900 340" role="img" aria-label="Funnel chart: click to lead">
+          <polygon points="140,60 760,60 690,125 210,125" fill="rgba(124,58,237,0.18)"></polygon>
+          <text x="160" y="95" font-size="18" fill="rgba(15,23,42,0.9)">Clicks (100%)</text>
+
+          <polygon points="210,125 690,125 640,185 260,185" fill="rgba(37,99,235,0.16)"></polygon>
+          <text x="280" y="160" font-size="18" fill="rgba(15,23,42,0.9)">Landing page views</text>
+
+          <polygon points="260,185 640,185 600,240 300,240" fill="rgba(20,184,166,0.16)"></polygon>
+          <text x="320" y="220" font-size="18" fill="rgba(15,23,42,0.9)">CTA clicks</text>
+
+          <polygon points="300,240 600,240 560,290 340,290" fill="rgba(245,158,11,0.16)"></polygon>
+          <text x="360" y="274" font-size="18" fill="rgba(15,23,42,0.9)">Leads / Sales</text>
+        </svg>
+        <p class="micro">Fix leaks with message match, friction removal, proof, and mobile-first UX.</p>
+      </div>
+    </section>
+
+    <!-- ===== ORDER ===== -->
+    <section id="order">
+      <h2>The correct order to fix performance</h2>
+      <ol>
+        <li>Fix tracking integrity</li>
+        <li>Eliminate intent waste</li>
+        <li>Stabilize structure &amp; budgets</li>
+        <li>Improve conversion efficiency (mobile-first)</li>
+        <li>Then scale</li>
+      </ol>
+    </section>
+
+    <!-- ===== SCALING ===== -->
+    <section id="scaling">
+      <h2>Scaling rules &amp; thresholds</h2>
+
+      <div class="table-wrap">
+        <table aria-label="Scale vs Fix decision table">
+          <thead>
+            <tr><th>If you see this…</th><th>Do this next</th><th>Why</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>CPA stable 2+ weeks</td><td>Increase budget slowly</td><td>Stability indicates cleaner signals</td></tr>
+            <tr><td>ROAS volatile</td><td>Fix structure &amp; signals</td><td>Volatility suggests mixed intent/noise</td></tr>
+            <tr><td>CVR under ~2%</td><td>Fix landing page + offer</td><td>Efficiency leak → high CPA</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="micro">Scaling isn’t “more spend.” Scaling is more spend <em>after</em> stability.</p>
+    </section>
+
+    <!-- ===== CHECKLIST ===== -->
+    <section id="checklist">
+      <h2>10-point profitability quick check</h2>
+
+      <div class="callout">
+        <strong>Use this checklist:</strong> If 3+ items are “No”, your account likely has a structural problem (not a budget problem).
+      </div>
+
+      <ul>
+        <li>Brand separated from non-brand</li>
+        <li>Weekly search terms review</li>
+        <li>Layered negative keywords</li>
+        <li>Clean conversion tracking</li>
+        <li>Lead quality considered (not just volume)</li>
+        <li>Intent-based structure</li>
+        <li>Budget allocation model</li>
+        <li>Mobile-first landing experience</li>
+        <li>Message match (query → ad → page)</li>
+        <li>Monthly audit cadence</li>
+      </ul>
+    </section>
+
+    <!-- ===== Secondary CTA (ONLY one button here: Contact) ===== -->
+    <section id="cta2" class="cta-block">
+      <h2>Ready for a structured performance review?</h2>
+      <p>If you want a clear action plan, request a structured review via the contact page.</p>
+      <a class="btn btn-secondary" href="https://adsnord.com/contact/" target="_blank" rel="noopener">
+        📩 Go to Contact Page
+      </a>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="faq">
+      <h2>Frequently asked questions</h2>
+
+      <details>
+        <summary>Why are my Google Ads not profitable?</summary>
+        <p>Usually intent mismatch, noisy conversion signals, poor structure, or landing page friction. Use the 4-layer order to diagnose instead of guessing.</p>
+      </details>
+
+      <details>
+        <summary>How do I improve Google Ads ROI quickly?</summary>
+        <p>Reduce query waste first, then stabilize structure and signals, then improve conversion efficiency. Don’t scale before diagnosis.</p>
+      </details>
+
+      <details>
+        <summary>Why is my CPA so high on Google Ads?</summary>
+        <p>High CPA usually comes from weak intent, low conversion rate, unclear offer/message match, or tracking noise that misleads bidding.</p>
+      </details>
+
+      <details>
+        <summary>Do negative keywords still matter with smart bidding?</summary>
+        <p>Yes. Smart bidding optimizes bids—not intent. Negatives reduce noise and protect conversion signals.</p>
+      </details>
+
+      <details>
+        <summary>How often should I audit my Google Ads account?</summary>
+        <p>Weekly light checks, monthly deep audits, and quarterly architecture reviews—especially before scaling.</p>
+      </details>
+    </section>
+
+    <!-- ===== AUTHOR ===== -->
+    <section id="author" class="author">
+      <h2>Author</h2>
+      <p><strong>Motiur Rahman</strong></p>
+      <p>Founder of AdsNord. Google Ads Performance Consultant helping SMBs, ecommerce brands, and lead generation businesses build profitable campaign systems worldwide.</p>
+      <p>
+        Learn more:
+        <a href="https://adsnord.com/about/" target="_blank" rel="noopener">About AdsNord</a> •
+        Explore services:
+        <a href="https://adsnord.com/services/" target="_blank" rel="noopener">AdsNord Services</a>
+      </p>
+    </section>
+
+  </div>
+</section>
+
+</body>
+</html>
