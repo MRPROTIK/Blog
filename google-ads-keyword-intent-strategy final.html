@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <title>Google Ads Keyword Intent Strategy (Stop Paying for Wrong Traffic)</title>
+  <meta name="description" content="A consultant-level Google Ads keyword intent framework for B2B and lead generation businesses. Learn search terms workflow, negative keyword strategy, match types rules, and query protection for smart bidding." />
+
+  <!-- ✅ Canonical (server-rendered in head = best practice) -->
+  <link rel="canonical" href="https://adsnord.com/blog/google-ads-keyword-intent-strategy/" />
+
+  <style>
+    /* =========================
+       MOBILE-FIRST DESIGN ✅
+       Mobile (default) → Tablet → Desktop
+    ========================== */
+
+    :root{
+      --bg:#ffffff;
+      --text:#111827;
+      --muted:#6b7280;
+      --card:#f8fafc;
+      --line:#e5e7eb;
+      --accent:#2563eb;
+      --shadow: 0 10px 28px rgba(17,24,39,.08);
+      --radius: 14px;
+      --max: 1180px;
+      --whatsapp:#25D366;
+
+      /* NEW: chart colors ✅ */
+      --c-good: rgba(22,163,74,.18);
+      --c-good-b: rgba(22,163,74,.35);
+
+      --c-warn: rgba(245,158,11,.18);
+      --c-warn-b: rgba(245,158,11,.38);
+
+      --c-bad: rgba(220,38,38,.18);
+      --c-bad-b: rgba(220,38,38,.38);
+
+      --c-blue: rgba(37,99,235,.10);
+      --c-blue-b: rgba(37,99,235,.25);
+    }
+
+    /* NEW: mobile safety + consistent sizing ✅ */
+    *, *::before, *::after{ box-sizing:border-box; }
+    img{ max-width:100%; height:auto; }
+    .card, .chart, .callout{ overflow-wrap:anywhere; }
+
+    body{
+      margin:0;
+  padding-top: 100px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.7;
+    }
+
+    a{ color:var(--accent); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .wrap{
+      max-width: var(--max);
+      margin: auto;
+      padding: 18px 16px 54px;
+    }
+
+    /* Layout defaults = mobile stack */
+    .layout{
+      display:block;
+    }
+
+    /* Cards */
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin-top: 16px;
+    }
+
+    /* Hero */
+    .hero h1{
+      margin:0 0 10px;
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: -0.4px;
+    }
+    .hero .lead{
+      margin: 10px 0 14px;
+      font-size: 16px;
+      color:#1f2937;
+    }
+    .hero ul{
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .learn{
+      margin-top:14px;
+      background: #eef5ff;
+      border-left: 5px solid var(--accent);
+      border-radius: 12px;
+      padding: 14px 14px 10px;
+    }
+    .learn h3{
+      margin:0 0 8px;
+      font-size: 16px;
+    }
+    .learn ul{
+      margin:0;
+      padding-left: 18px;
+    }
+
+    /* Buttons */
+    .btn-row{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      cursor:pointer;
+      text-decoration:none !important;
+      width: 100%;
+      text-align:center;
+    }
+    .btn-whatsapp{
+      background: var(--whatsapp);
+      color:#fff !important;
+      box-shadow: var(--shadow);
+    }
+
+    /* NEW: Contact button style (secondary CTA) ✅ */
+    .btn-contact{
+      background:#111827;
+      color:#fff !important;
+      box-shadow: var(--shadow);
+    }
+
+    .note{
+      margin: 10px 0 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* Table of contents (mobile: normal block, not sticky) */
+    .toc h3{
+      margin:0 0 8px;
+      font-size: 16px;
+    }
+    .toc ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    .toc li{
+      padding: 8px 0;
+      border-top: 1px dashed rgba(229,231,235,.9);
+    }
+    .toc li:first-child{ border-top: none; }
+    .toc a{
+      color:#111827;
+      font-size: 14px;
+      display:block;
+    }
+
+    /* Headings */
+    h2{
+      margin:0 0 10px;
+      font-size: 22px;
+      line-height: 1.25;
+      letter-spacing: -0.2px;
+    }
+    h3{
+      margin: 16px 0 8px;
+      font-size: 17px;
+    }
+
+    .mini{
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .callout{
+      margin-top: 12px;
+      padding: 14px 14px;
+      border-radius: 12px;
+      background: var(--card);
+      border: 1px solid var(--line);
+    }
+    .divider{
+      height:1px;
+      background: var(--line);
+      margin: 16px 0;
+    }
+
+    /* Images */
+    figure.img{
+      margin: 14px 0 0;
+      padding: 12px;
+      border-radius: 12px;
+      border:1px dashed var(--line);
+      background: #fff;
+    }
+    figure.img img{
+      width:100%;
+      height:auto;
+      border-radius: 12px;
+      display:block;
+      background:#f3f4f6;
+    }
+    figure.img figcaption{
+      margin-top:10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Charts */
+    .chart{
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      background:#fff;
+    }
+
+    /* NEW: mobile chart header wrap ✅ */
+    .chart-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:10px;
+      margin-bottom: 10px;
+      flex-wrap:wrap;
+    }
+    .chart-title h4{
+      margin:0;
+      font-size: 15px;
+    }
+    .chart-title span{
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Bar chart */
+    .bar-wrap{
+      display:flex;
+      align-items:flex-end;
+      gap:10px;
+      height: 200px;
+      padding: 10px 4px 0;
+      border-top: 1px dashed var(--line);
+
+      /* NEW: avoid squeezing on very small screens ✅ */
+      overflow-x:auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .bar{
+      flex:1;
+      min-width: 92px; /* NEW: mobile-safe */
+      border-radius: 12px 12px 8px 8px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      padding: 10px 8px;
+      font-weight: 900;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      color:#111827;
+      background: var(--c-blue);
+      border: 1px solid var(--c-blue-b);
+    }
+
+    /* NEW: add color to Graph 1 bars ✅ */
+    .bar-wrap .bar:nth-child(1){
+      background: var(--c-good);
+      border-color: var(--c-good-b);
+    }
+    .bar-wrap .bar:nth-child(2){
+      background: var(--c-warn);
+      border-color: var(--c-warn-b);
+    }
+    .bar-wrap .bar:nth-child(3){
+      background: var(--c-bad);
+      border-color: var(--c-bad-b);
+    }
+
+    .bar strong{
+      display:block;
+      font-size: 13px;
+      line-height: 1.1;
+    }
+    .bar small{
+      display:block;
+      font-weight:700;
+      opacity:.85;
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .bar-labels{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Funnel */
+    .funnel{
+      margin-top: 10px;
+      display:grid;
+      gap:10px;
+    }
+    .funnel-step{
+      border-radius: 12px;
+      padding: 12px 12px;
+      border:1px solid var(--line);
+      background:#fff;
+
+      /* NEW: subtle color accent ✅ */
+      border-left: 4px solid rgba(37,99,235,.35);
+    }
+    .funnel-step strong{
+      display:block;
+      font-size: 14px;
+    }
+    .tag{
+      display:inline-block;
+      margin-top: 6px;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      color: var(--muted);
+      background: var(--card);
+    }
+
+    /* Layer model */
+    .layers{
+      margin-top: 10px;
+      display:grid;
+      place-items:center;
+      padding: 10px;
+    }
+    .layer{
+      width:100%;
+      max-width: 520px;
+      border-radius: 14px;
+      border: 2px solid #111827;
+      padding: 16px 14px;
+      text-align:center;
+      font-weight: 900;
+      background:#fff;
+    }
+    .layer .sub{
+      display:block;
+      margin-top:6px;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    /* NEW: colored borders for clarity ✅ */
+    .layer{ border-color: rgba(37,99,235,.55); }
+    .layer.inner{ margin-top: 12px; border-color: rgba(245,158,11,.65); width:92%; }
+    .layer.core{ margin-top: 12px; border-color: rgba(22,163,74,.65); width:84%; }
+
+    /* Spectrum */
+    .spectrum{
+      margin-top: 10px;
+      border-radius: 12px;
+      overflow:hidden;
+      border: 1px solid var(--line);
+    }
+    .spectrum-row{
+      display:flex;
+      height: 52px;
+      font-weight: 900;
+      font-size: 13px;
+    }
+    .seg{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 0 10px;
+      text-align:center;
+    }
+    .seg.bad{ flex:3; background: rgba(220,38,38,.12); border-right:1px solid var(--line); }
+    .seg.warn{ flex:2; background: rgba(245,158,11,.14); border-right:1px solid var(--line); }
+    .seg.good{ flex:1; background: rgba(22,163,74,.14); }
+    .spectrum-legend{
+      display:flex;
+      justify-content:space-between;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: var(--muted);
+      background:#fff;
+    }
+
+    /* Checklist */
+    .checklist{
+      display:grid;
+      gap:10px;
+      margin-top: 12px;
+    }
+    .check{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 10px 12px;
+      border:1px solid var(--line);
+      border-radius: 12px;
+      background:#fff;
+    }
+    .tick{
+      width:22px;height:22px;
+      border-radius: 7px;
+      border:1px solid var(--line);
+      background: var(--card);
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      color:#111827;
+      flex:0 0 auto;
+      margin-top:2px;
+    }
+    .check p{ margin:0; font-size: 14px; }
+
+    /* Accordion FAQ */
+    .faq details{
+      border:1px solid var(--line);
+      border-radius: 12px;
+      background:#fff;
+      padding: 12px 12px;
+      margin-top: 10px;
+    }
+    .faq summary{
+      cursor:pointer;
+      font-weight: 900;
+      font-size: 14px;
+      color:#111827;
+      list-style:none;
+      outline:none;
+    }
+    .faq summary::-webkit-details-marker{ display:none; }
+    .faq .ans{
+      margin-top: 10px;
+      color:#111827;
+      font-size: 14px;
+    }
+
+    /* Author */
+    .author{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .avatar{
+      width:54px;height:54px;
+      border-radius: 18px;
+      background: var(--card);
+      border:1px solid var(--line);
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      color:#111827;
+      flex:0 0 auto;
+    }
+    .author .meta{
+      flex:1;
+      min-width: 240px;
+    }
+    .author .meta strong{
+      display:block;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+    .author .meta span{
+      display:block;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Form */
+    form{
+      margin-top: 12px;
+      display:grid;
+      gap:12px;
+    }
+    label{
+      font-size: 13px;
+      color: var(--muted);
+      display:block;
+      margin-bottom: 6px;
+    }
+    input, select, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-size: 14px;
+      outline:none;
+    }
+    textarea{ min-height: 110px; resize: vertical; }
+    .submit{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid #111827;
+      background:#111827;
+      color:#fff;
+      font-weight: 900;
+      cursor:pointer;
+      width: 100%;
+    }
+
+    /* =========================
+       TABLET (min-width: 768px)
+    ========================== */
+    @media (min-width: 768px){
+      .wrap{ padding: 22px 22px 70px; }
+      .hero h1{ font-size: 34px; }
+      .hero .lead{ font-size: 17px; }
+      .btn{ width: auto; }
+      .submit{ width: fit-content; }
+      .checklist{ grid-template-columns: 1fr 1fr; gap:10px 14px; }
+    }
+
+    /* =========================
+       DESKTOP (min-width: 1024px)
+    ========================== */
+    @media (min-width: 1024px){
+      .layout{
+        display:flex;
+        gap: 28px;
+        align-items:flex-start;
+      }
+      .toc{
+        width: 32%;
+        position: sticky;
+        top: 110px;
+      }
+      .main{
+        width: 68%;
+        min-width: 0;
+      }
+      .card{ padding: 22px; }
+    }
+  </style>
+
+  <!-- ✅ 10/10 Enhancement Pack (ADD-ONLY) -->
+  <style>
+    /* Accessibility + UX polish (doesn't touch your core styles) */
+    :root { scroll-behavior: smooth; }
+
+    /* Better focus for keyboard users */
+    :focus-visible {
+      outline: 3px solid rgba(37, 99, 235, .55);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
+
+    /* Skip link for screen readers & keyboard */
+    .skip-link{
+      position:absolute;
+      left:-999px;
+      top:10px;
+      background:#111827;
+      color:#fff;
+      padding:10px 12px;
+      border-radius:12px;
+      z-index:9999;
+    }
+    .skip-link:focus{ left:10px; }
+
+    /* Sticky TOC active state */
+    .toc a.is-active{
+      font-weight: 900;
+      color: #2563eb;
+    }
+
+    /* Small improvements to cards on very large screens (subtle) */
+    @media (min-width: 1200px){
+      .card{ transition: transform .12s ease, box-shadow .12s ease; }
+      .card:hover{ transform: translateY(-1px); }
+    }
+
+    /* Reduce motion support */
+    @media (prefers-reduced-motion: reduce){
+      :root{ scroll-behavior: auto; }
+      *{ transition: none !important; animation: none !important; }
+    }
+
+    /* Injected "Last updated" badge */
+    .updated-badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f8fafc;
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 10px;
+    }
+
+    /* Copy-link buttons for sections */
+    .copylink{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid #e5e7eb;
+      background:#fff;
+      padding:8px 10px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor:pointer;
+      margin: 8px 0 0;
+    }
+    .copylink:hover{ background:#f8fafc; }
+    .copylink small{ font-weight:700; color:#6b7280; }
+
+    /* Reading progress bar */
+    .read-progress{
+      position:fixed;
+      top:0; left:0;
+      height:4px;
+      width:0%;
+      background: rgba(37,99,235,.85);
+      z-index: 999999;
+    }
+
+    /* Breadcrumbs (light trust + navigation) */
+    .crumbs{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+    .crumbs a{ color:#6b7280; text-decoration:none; }
+    .crumbs a:hover{ text-decoration:underline; }
+    .crumbs .sep{ opacity:.6; }
+
+    /* “Trust badges” row */
+    .trust-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 12px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f8fafc;
+      font-size: 12px;
+      color: #374151;
+      font-weight: 800;
+    }
+    .badge small{
+      font-weight: 700;
+      color:#6b7280;
+    }
+
+    /* Table (examples) */
+    .table-wrap{
+      overflow:auto;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      background:#fff;
+      margin-top: 12px;
+    }
+    table.intent-table{
+      width:100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+    .intent-table th, .intent-table td{
+      padding: 12px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 14px;
+      vertical-align: top;
+    }
+    .intent-table th{
+      position: sticky;
+      top: 0;
+      background: #f8fafc;
+      text-align:left;
+      font-size: 13px;
+      letter-spacing: .2px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f8fafc;
+      font-size: 12px;
+      font-weight: 900;
+      color:#111827;
+      white-space: nowrap;
+    }
+    .pill.high{ border-color: rgba(22,163,74,.35); background: rgba(22,163,74,.10); }
+    .pill.eval{ border-color: rgba(245,158,11,.38); background: rgba(245,158,11,.12); }
+    .pill.research{ border-color: rgba(37,99,235,.25); background: rgba(37,99,235,.08); }
+    .pill.bad{ border-color: rgba(220,38,38,.35); background: rgba(220,38,38,.10); }
+
+    /* Lead magnet / template card */
+    .template{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .template .icon{
+      width:56px;height:56px;
+      border-radius: 18px;
+      display:grid;
+      place-items:center;
+      border:1px solid #e5e7eb;
+      background:#f8fafc;
+      font-weight: 900;
+    }
+    .template .content{
+      flex:1;
+      min-width: 240px;
+    }
+    .template .content p{ margin:6px 0 0; color:#374151; }
+    .template .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 12px;
+    }
+    .btn-soft{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-weight: 900;
+      border: 1px solid #e5e7eb;
+      background: #f8fafc;
+      color:#111827 !important;
+      cursor:pointer;
+      text-decoration:none !important;
+    }
+    .btn-soft:hover{ background:#fff; }
+
+    /* Print polish */
+    @media print{
+      .toc, .btn-row, .copylink, .read-progress{ display:none !important; }
+      .card{ box-shadow:none !important; }
+      a{ text-decoration: underline; }
+    }
+  </style>
+
+  <!-- ✅ FIX: Elementor Heading Overlap (ADD-ONLY, SCOPED) -->
+  <style id="adsnord-elementor-heading-overlap-fix">
+    /*
+      Elementor/theme sometimes applies transforms, filters, shadows, blend modes,
+      or pseudo-elements to headings which can cause "double/overlap" rendering.
+      This fix is scoped ONLY to your article inside .wrap (won't affect site-wide headings).
+    */
+    .wrap h1,
+    .wrap h2,
+    .wrap h3{
+      position: relative !important;
+      transform: none !important;
+      filter: none !important;
+      text-shadow: none !important;
+      mix-blend-mode: normal !important;
+      letter-spacing: normal !important;
+      word-spacing: normal !important;
+      -webkit-text-stroke: 0 transparent !important;
+      isolation: isolate;
+      z-index: 1;
+    }
+
+    /* keep your intended line-height (prevents cramped overlap on mobile) */
+    .wrap h1{ line-height: 1.15 !important; }
+    .wrap h2{ line-height: 1.25 !important; }
+    .wrap h3{ line-height: 1.25 !important; }
+
+    /* if a theme injects decorative pseudo-elements that sit on top of text */
+    .wrap h1::before, .wrap h1::after,
+    .wrap h2::before, .wrap h2::after,
+    .wrap h3::before, .wrap h3::after{
+      content: none !important;
+      display: none !important;
+    }
+
+    /* if Elementor wraps parts of headings in spans */
+    .wrap h1 span, .wrap h2 span, .wrap h3 span{
+      line-height: inherit !important;
+    }
+  </style>
+
+  <!-- ✅ Structured Data: Article + FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Google Ads Keyword Intent Strategy (Stop Paying for Wrong Traffic)",
+    "description":"A consultant-level Google Ads keyword intent framework for B2B and lead generation businesses. Learn search terms workflow, negative keyword strategy, match types rules, and query protection for smart bidding.",
+    "author":{
+      "@type":"Person",
+      "name":"MD Motiur",
+      "jobTitle":"Google Ads Consultant",
+      "worksFor":{"@type":"Organization","name":"AdsNord"}
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"AdsNord",
+      "url":"https://adsnord.com/",
+      "logo":{
+        "@type":"ImageObject",
+        "url":"https://adsnord.com/wp-content/uploads/2026/02/google-ads-keyword-intent-intent-pyramid.webp"
+      }
+    },
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://adsnord.com/blog/google-ads-keyword-intent-strategy/"},
+    "image":[
+      "https://adsnord.com/wp-content/uploads/2026/02/google-ads-keyword-intent-intent-pyramid.webp",
+      "https://adsnord.com/wp-content/uploads/2026/02/google-ads-keyword-intent-search-terms-workflow.webp"
+    ],
+    "datePublished":"2026-02-01",
+    "dateModified":"2026-02-22"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"How do I find negative keywords in Google Ads?",
+        "acceptedAnswer":{"@type":"Answer","text":"Use the Search Terms Report weekly. Label terms by intent, then add negatives in layers: account-level for universal junk, campaign-level for intent separation, and ad group-level for relevance. This is the core of an evergreen negative keyword strategy."}
+      },
+      {
+        "@type":"Question",
+        "name":"Should I use broad match in Google Ads?",
+        "acceptedAnswer":{"@type":"Answer","text":"Broad match can work when you have clean conversion signals, stable volume, and strict intent protection. Without weekly query reviews and strong negatives, broad match often increases irrelevant searches."}
+      },
+      {
+        "@type":"Question",
+        "name":"Why am I getting irrelevant searches on Google Ads?",
+        "acceptedAnswer":{"@type":"Answer","text":"Most common causes: loose match types, weak negatives, and mixed campaign structure where high intent and research intent live together. Fixing keyword intent usually reduces irrelevant searches quickly."}
+      },
+      {
+        "@type":"Question",
+        "name":"How often should I check the Search Terms Report?",
+        "acceptedAnswer":{"@type":"Answer","text":"Weekly for most active B2B lead generation accounts. Check more often after budget increases or major keyword expansion."}
+      },
+      {
+        "@type":"Question",
+        "name":"Do negative keywords hurt smart bidding?",
+        "acceptedAnswer":{"@type":"Answer","text":"No. Negative keywords reduce noise and protect conversion signals. Smart bidding improves when it learns from higher-quality data."}
+      },
+      {
+        "@type":"Question",
+        "name":"Why does performance drop when I increase budget?",
+        "acceptedAnswer":{"@type":"Answer","text":"Budget increases trigger more exploration. If intent controls are weak, the system buys more mixed intent and CPA rises. Tight negatives plus intent separation prevents this."}
+      }
+    ]
+  }
+  </script>
+
+  <!-- ✅ Extra Structured Data: Person + Organization + Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"Person",
+        "@id":"https://adsnord.com/#person-md-motiur",
+        "name":"MD Motiur",
+        "jobTitle":"Google Ads Consultant",
+        "worksFor":{"@type":"Organization","name":"AdsNord","url":"https://adsnord.com/"},
+        "url":"https://adsnord.com/",
+        "sameAs":[
+          "https://adsnord.com/contact/"
+        ]
+      },
+      {
+        "@type":"Organization",
+        "@id":"https://adsnord.com/#org-adsnord",
+        "name":"AdsNord",
+        "url":"https://adsnord.com/",
+        "logo":{
+          "@type":"ImageObject",
+          "url":"https://adsnord.com/wp-content/uploads/2026/02/google-ads-keyword-intent-intent-pyramid.webp"
+        }
+      },
+      {
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://adsnord.com/"},
+          {"@type":"ListItem","position":2,"name":"Blog","item":"https://adsnord.com/blog/"},
+          {"@type":"ListItem","position":3,"name":"Google Ads Keyword Intent Strategy","item":"https://adsnord.com/blog/google-ads-keyword-intent-strategy/"}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- ✅ 10/10 HEAD Upgrade Pack -->
+  <link rel="preload" as="image" href="https://adsnord.com/wp-content/uploads/2026/02/google-ads-keyword-intent-intent-pyramid.webp" fetchpriority="high">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Google Ads Keyword Intent Strategy (Stop Paying for Wrong Traffic)">
+  <meta property="og:description" content="A consultant-level Google Ads keyword intent framework for B2B and lead generation businesses. Learn search terms workflow, negative keyword strategy, match types rules, and query protection for smart bidding.">
+  <meta property="og:url" content="https://adsnord.com/blog/google-ads-keyword-intent-strategy/">
+  <meta property="og:image" content="https://adsnord.com/wp-content/uploads/2026/02/google-ads-keyword-intent-intent-pyramid.webp">
+  <meta property="og:site_name" content="AdsNord">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Google Ads Keyword Intent Strategy (Stop Paying for Wrong Traffic)">
+  <meta name="twitter:description" content="A consultant-level Google Ads keyword intent framework for B2B and lead generation businesses.">
+  <meta name="twitter:image" content="https://adsnord.com/wp-content/uploads/2026/02/google-ads-keyword-intent-intent-pyramid.webp">
+</head>
+
+<body>
+
+  <!-- ✅ Reading Progress Bar -->
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+
+  <!-- NOTE: No header here ✅ (Your site already has a dedicated header) -->
+
+  <main class="wrap">
+
+    <div class="layout">
+
+      <!-- TOC -->
+      <aside class="card toc">
+        <h3>Table of Contents</h3>
+        <ul>
+          <li><a href="#intro">Why keyword intent determines profitability</a></li>
+          <li><a href="#hidden-cost">The hidden cost of wrong-intent traffic</a></li>
+          <li><a href="#intent-map">Build an intent map (B2B model)</a></li>
+          <li><a href="#search-terms">Weekly Search Terms Report workflow</a></li>
+          <li><a href="#negative-architecture">Negative keyword architecture (layered)</a></li>
+          <li><a href="#match-types">Match types strategy (practical rules)</a></li>
+          <li><a href="#smart-bidding">Query control with smart bidding</a></li>
+          <li><a href="#implementation">Implementation checklist (60–90 minutes)</a></li>
+          <li><a href="#faq">FAQ (accordion)</a></li>
+          <li><a href="#author">Author</a></li>
+          <li><a href="#financial">Financial impact + contact form</a></li>
+          <li><a href="#conclusion">Final takeaway</a></li>
+        </ul>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <div class="main">
+
+        <!-- HERO -->
+        <section class="card hero">
+          <h1>Google Ads Keyword Intent Strategy: Stop Paying for the Wrong Traffic</h1>
+
+          <p class="lead">
+            If your B2B lead generation campaigns are producing clicks but not qualified opportunities,
+            your <strong>google ads keyword intent</strong> control is misaligned — and smart bidding will scale the wrong signals.
+          </p>
+
+          <ul>
+            <li>Rising CPA without better lead quality</li>
+            <li>Irrelevant searches flooding your Search Terms Report</li>
+            <li>“Good” conversion volume but weak pipeline outcomes</li>
+          </ul>
+
+          <div class="learn">
+            <h3>What You’ll Learn in This Blog</h3>
+            <ul>
+              <li>How to map B2B intent (commercial vs research) inside Google Ads</li>
+              <li>How to use the Search Terms Report weekly to reduce waste</li>
+              <li>How to build a layered negative keyword strategy</li>
+              <li>When to use broad, phrase, and exact match safely</li>
+              <li>How intent control improves smart bidding performance</li>
+            </ul>
+          </div>
+
+          <!-- CTA #1 ✅ (KEEP) -->
+          <div class="btn-row">
+            <a class="btn btn-whatsapp" href="https://wa.me/46764304702" target="_blank" rel="noopener">
+              WhatsApp: Contact for Query Review
+            </a>
+          </div>
+
+          <p class="note">
+            Optional (text link): Use the <a href="https://adsnord.com/tools/" target="_blank" rel="noopener"><strong>AdsNord Free Tools</strong></a>
+            to map intent, spot waste, and structure your optimization sprint.
+          </p>
+
+          <figure class="img">
+            <img
+              src="https://adsnord.com/wp-content/uploads/2026/02/google-ads-keyword-intent-intent-pyramid.webp"
+              alt="google ads keyword intent"
+              title="Google Ads Keyword Intent - Intent Pyramid for B2B Lead Generation"
+              loading="lazy"
+            />
+            <figcaption>
+              Image 1 (Hero): google-ads-keyword-intent-intent-pyramid.webp
+            </figcaption>
+          </figure>
+        </section>
+
+        <!-- INTRO -->
+        <section id="intro" class="card">
+          <h2>Why keyword intent determines profitability (especially for B2B lead generation)</h2>
+
+          <p>
+            In B2B and lead generation, the goal isn’t more clicks. The goal is <strong>qualified demand</strong> —
+            people ready to start a conversation, request a quote, book a demo, or talk to sales.
+            That’s why <strong>google ads keyword intent</strong> is one of the highest-leverage levers in any account.
+          </p>
+
+          <p>
+            When intent is wrong, performance becomes misleading. CTR can look fine. CPC can look acceptable.
+            Even conversions can look “healthy.” But lead quality collapses. This is how accounts get optimized and still become unprofitable.
+          </p>
+
+          <div class="callout">
+            <strong>Start here (internal link):</strong>
+            If you want the full diagnostic hub (profitability system), read:
+            <a href="https://adsnord.com/blog/google-ads-audit/google-ads-not-profitable/" target="_blank" rel="noopener">
+              Why Your Google Ads Are Not Profitable
+            </a>
+          </div>
+
+          <p class="mini">
+            This article naturally covers evergreen, high-intent terms like:
+            <strong>negative keyword strategy</strong>, <strong>search terms report google ads</strong>,
+            <strong>google ads irrelevant searches</strong>, <strong>match types strategy google ads</strong>,
+            and <strong>keyword research for google ads</strong>.
+          </p>
+        </section>
+
+        <!-- HIDDEN COST -->
+        <section id="hidden-cost" class="card">
+          <h2>The hidden cost of wrong-intent traffic</h2>
+
+          <p>
+            Wrong-intent traffic is expensive twice: you pay for the click, and you pay for the consequences.
+            In B2B, consequences are bigger than CPC — sales time wasted, slow follow-up due to noise,
+            and a pipeline that looks active but doesn’t close.
+          </p>
+
+          <p>
+            The most dangerous part is that wrong-intent traffic can still produce conversions.
+            If every conversion is counted the same, Google’s AI optimizes for volume, not quality.
+          </p>
+
+          <!-- Graph 1 -->
+          <div class="chart" role="img" aria-label="Query waste vs CPA chart">
+            <div class="chart-title">
+              <h4>Graph 1: Query Waste vs CPA (Illustrative)</h4>
+              <span>Concept chart</span>
+            </div>
+
+            <div class="bar-wrap">
+              <div class="bar" style="height:55%;">
+                <div>
+                  <strong>Low Waste</strong>
+                  <small>CPA: Lower</small>
+                </div>
+              </div>
+              <div class="bar" style="height:78%;">
+                <div>
+                  <strong>Medium Waste</strong>
+                  <small>CPA: Higher</small>
+                </div>
+              </div>
+              <div class="bar" style="height:100%;">
+                <div>
+                  <strong>High Waste</strong>
+                  <small>CPA: Highest</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="bar-labels">
+              <span>Cleaner queries</span>
+              <span>Mixed intent</span>
+              <span>Irrelevant intent</span>
+            </div>
+
+            <p class="mini">
+              The numbers are illustrative — the pattern is stable: more irrelevant searches → higher CPA and lower lead quality.
+            </p>
+          </div>
+
+          <div class="callout">
+            <strong>Diagnostic question:</strong>
+            In the last 7–14 days, what % of your search terms were clearly irrelevant or purely informational?
+            If you don’t know, you’re not controlling intent — you’re letting the system decide.
+          </div>
+        </section>
+
+        <!-- INTENT MAP -->
+        <section id="intent-map" class="card">
+          <h2>Build an intent map (a simple model you can apply fast)</h2>
+
+          <p>
+            An intent map is a labeling system that tells you which queries deserve budget and which queries need containment.
+            For B2B lead generation, intent usually sits in 3 predictable layers:
+          </p>
+
+          <h3>Layer 1: High commercial intent</h3>
+          <p>
+            These are “ready to talk” queries and often include modifiers like:
+            <em>agency</em>, <em>consultant</em>, <em>pricing</em>, <em>service</em>, <em>for [industry]</em>, <em>hire</em>.
+            These should be protected and measured with stronger conversion signals.
+          </p>
+
+          <h3>Layer 2: Medium intent (evaluation)</h3>
+          <p>
+            These queries compare options. They can work — but only if your landing page and offer are built to convert evaluation-stage buyers.
+          </p>
+
+          <h3>Layer 3: Research intent</h3>
+          <p>
+            Informational queries can create volume, but they often create low-quality leads unless you have a qualification funnel.
+            If research intent sits inside your high-intent campaigns, it contaminates learning.
+          </p>
+
+          <div class="callout">
+            <strong>Rule:</strong> Don’t fight intent inside one campaign. <em>Separate it.</em>
+            That’s the foundation of a scalable <strong>google ads keyword intent</strong> system.
+          </div>
+
+          <figure class="img">
+            <img
+              src="https://adsnord.com/wp-content/uploads/2026/02/google-ads-keyword-intent-search-terms-workflow.webp"
+              alt="google ads keyword intent"
+              title="Google Ads Keyword Intent - Search Terms Workflow Diagram"
+              loading="lazy"
+            />
+            <figcaption>
+              Image 2 (Body): google-ads-keyword-intent-search-terms-workflow.webp
+            </figcaption>
+          </figure>
+
+          <p class="mini">
+            This step supports <strong>keyword research for google ads</strong> and helps prevent <strong>google ads irrelevant searches</strong>
+            from consuming budget.
+          </p>
+        </section>
+
+        <!-- SEARCH TERMS WORKFLOW -->
+        <section id="search-terms" class="card">
+          <h2>Weekly Search Terms Report workflow (the consultant process)</h2>
+
+          <p>
+            The Search Terms Report shows what you actually paid for — not what you intended to target.
+            If you’re wondering <strong>how to find negative keywords in Google Ads</strong>, this is where it happens.
+          </p>
+
+          <h3>Step-by-step (weekly)</h3>
+          <ol>
+            <li><strong>Export</strong> search terms for the last 7–14 days.</li>
+            <li><strong>Label</strong> each term: High / Medium / Research / Irrelevant.</li>
+            <li><strong>Decide</strong>: negative, isolate, or promote to exact match.</li>
+            <li><strong>Apply</strong> layered negatives + match type changes.</li>
+            <li><strong>Monitor</strong> lead quality signals for the next 7 days.</li>
+          </ol>
+
+          <p class="mini">
+            External reference:
+            <a href="https://support.google.com/google-ads/answer/2472708" target="_blank" rel="noopener">
+              Google Ads — Search Terms Report
+            </a>
+          </p>
+
+          <!-- Graph 2 -->
+          <div class="chart" role="img" aria-label="Search terms filtering funnel chart">
+            <div class="chart-title">
+              <h4>Graph 2: Search Terms Filtering Funnel (Illustrative)</h4>
+              <span>Export → label → decide → apply → monitor</span>
+            </div>
+
+            <div class="funnel">
+              <div class="funnel-step">
+                <strong>100% Search Terms</strong>
+                <span class="tag">Export weekly</span>
+              </div>
+              <div class="funnel-step">
+                <strong>Irrelevant → Add negatives</strong>
+                <span class="tag">Stops waste</span>
+              </div>
+              <div class="funnel-step">
+                <strong>Research → Isolate or nurture</strong>
+                <span class="tag">Prevents mixed intent</span>
+              </div>
+              <div class="funnel-step">
+                <strong>High intent → Promote & scale</strong>
+                <span class="tag">Protects profitability</span>
+              </div>
+            </div>
+
+            <p class="mini">
+              This turns your <strong>negative keyword strategy</strong> into a system — not a one-time cleanup.
+            </p>
+          </div>
+
+          <div class="callout">
+            <strong>Workflow tip:</strong> Keep a “Negatives Log” (Search term / Campaign / Intent / Action / Date).
+            It prevents repeated work and builds a repeatable optimization process.
+          </div>
+        </section>
+
+        <!-- NEGATIVE ARCHITECTURE -->
+        <section id="negative-architecture" class="card">
+          <h2>Negative keyword architecture (layered protection)</h2>
+
+          <p>
+            In B2B lead gen, you don’t just need a negative keyword list — you need a boundary system.
+            Layered negatives protect your best campaigns from low-intent invasion.
+          </p>
+
+          <h3>Account-level negatives</h3>
+          <p>
+            Universal “never buy” terms across the entire account (depending on your offer).
+          </p>
+
+          <h3>Campaign-level negatives</h3>
+          <p>
+            Enforces separation between high intent vs research intent campaigns so performance stays measurable.
+          </p>
+
+          <h3>Ad group-level negatives</h3>
+          <p>
+            Tight relevance control for sub-services, industries, or buyer types.
+          </p>
+
+          <!-- Graph 3 -->
+          <div class="chart" role="img" aria-label="Layered negative keyword defense model">
+            <div class="chart-title">
+              <h4>Graph 3: Layered Negative Keyword Defense Model</h4>
+              <span>Account → Campaign → Ad Group</span>
+            </div>
+
+            <div class="layers">
+              <div class="layer">
+                Account-Level Negatives
+                <span class="sub">Blocks universal junk terms account-wide</span>
+
+                <div class="layer inner">
+                  Campaign-Level Negatives
+                  <span class="sub">Prevents intent cannibalization</span>
+
+                  <div class="layer core">
+                    Ad Group-Level Negatives
+                    <span class="sub">Protects relevance & message match</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="mini">
+              This is the difference between “cleaning up” and controlling <strong>google ads keyword intent</strong>.
+            </p>
+          </div>
+
+          <div class="callout">
+            <strong>Internal link:</strong>
+            If you want the diagnostic framework that connects intent + profitability, use:
+            <a href="https://adsnord.com/blog/google-ads-audit/google-ads-not-profitable/" target="_blank" rel="noopener">
+              Google Ads Not Profitable
+            </a>
+          </div>
+        </section>
+
+        <!-- MATCH TYPES -->
+        <section id="match-types" class="card">
+          <h2>Match types strategy (practical rules that stay relevant)</h2>
+
+          <p>
+            Many advertisers ask: <strong>Should I use broad match in Google Ads?</strong>
+            Broad match can work — but only when your conversion signals are strong and your query control is consistent.
+          </p>
+
+          <!-- Graph 4 -->
+          <div class="chart" role="img" aria-label="Match type control spectrum">
+            <div class="chart-title">
+              <h4>Graph 4: Match Type Control Spectrum</h4>
+              <span>Risk vs control (concept model)</span>
+            </div>
+
+            <div class="spectrum">
+              <div class="spectrum-row">
+                <div class="seg bad">Broad (Higher Expansion Risk)</div>
+                <div class="seg warn">Phrase (Balanced)</div>
+                <div class="seg good">Exact (Highest Control)</div>
+              </div>
+              <div class="spectrum-legend">
+                <span>More exploration</span>
+                <span>More precision</span>
+              </div>
+            </div>
+
+            <p class="mini">
+              Broad match becomes safer when you have strong conversion signals, weekly search term reviews, and layered negatives.
+            </p>
+          </div>
+
+          <h3>Decision rules</h3>
+          <ul>
+            <li><strong>Exact match</strong> for high-intent, high-margin terms you want to protect.</li>
+            <li><strong>Phrase match</strong> for controlled discovery while maintaining boundaries.</li>
+            <li><strong>Broad match</strong> only when intent protection is strong and lead quality signals are clean.</li>
+          </ul>
+
+          <p class="mini">
+            External reference:
+            <a href="https://support.google.com/google-ads/answer/2497836" target="_blank" rel="noopener">
+              Google Ads — About keyword matching options
+            </a>
+          </p>
+        </section>
+
+        <!-- SMART BIDDING -->
+        <section id="smart-bidding" class="card">
+          <h2>Query control with smart bidding (protect your learning signals)</h2>
+
+          <p>
+            Smart bidding optimizes bids. It does <strong>not</strong> filter intent.
+            That’s why accounts report “smart bidding not working” when the real issue is signal contamination.
+          </p>
+
+          <div class="callout">
+            <strong>Key principle:</strong>
+            Negative keywords reduce noise and protect conversion signals.
+            They don’t hurt smart bidding — they help it.
+          </div>
+
+          <h3>How to keep smart bidding stable in B2B</h3>
+          <ul>
+            <li>Define what a “qualified lead” means and track it as cleanly as possible.</li>
+            <li>Separate campaigns by intent so learning happens inside consistent context.</li>
+            <li>Promote winners into tighter match types.</li>
+            <li>Block irrelevant themes before they become “conversion patterns.”</li>
+          </ul>
+        </section>
+
+        <!-- IMPLEMENTATION -->
+        <section id="implementation" class="card">
+          <h2>Implementation checklist (20 actions in 60–90 minutes)</h2>
+
+          <p>
+            This checklist is built for B2B and lead generation businesses. Run it weekly or bi-weekly and your intent control becomes predictable.
+          </p>
+
+          <div class="checklist">
+            <div class="check"><div class="tick">✓</div><p>Export Search Terms (last 7–14 days)</p></div>
+            <div class="check"><div class="tick">✓</div><p>Label intent: High / Medium / Research / Irrelevant</p></div>
+            <div class="check"><div class="tick">✓</div><p>Add account-level negatives for universal junk</p></div>
+            <div class="check"><div class="tick">✓</div><p>Add campaign negatives to protect intent layers</p></div>
+            <div class="check"><div class="tick">✓</div><p>Add ad group negatives for tight relevance</p></div>
+            <div class="check"><div class="tick">✓</div><p>Promote winners into phrase/exact match</p></div>
+            <div class="check"><div class="tick">✓</div><p>Isolate themes that trigger irrelevant searches</p></div>
+            <div class="check"><div class="tick">✓</div><p>Review top spenders: do they match ICP?</p></div>
+            <div class="check"><div class="tick">✓</div><p>Audit conversion actions: remove noisy signals</p></div>
+            <div class="check"><div class="tick">✓</div><p>Confirm landing page message match for top intent</p></div>
+            <div class="check"><div class="tick">✓</div><p>Separate brand vs non-brand where possible</p></div>
+            <div class="check"><div class="tick">✓</div><p>Protect core campaigns from constant budget shocks</p></div>
+            <div class="check"><div class="tick">✓</div><p>Track lead quality feedback from sales/CRM</p></div>
+            <div class="check"><div class="tick">✓</div><p>Review match types for over-expansion</p></div>
+            <div class="check"><div class="tick">✓</div><p>Maintain a negatives log (term/action/date)</p></div>
+            <div class="check"><div class="tick">✓</div><p>Document intent map rules for the team</p></div>
+            <div class="check"><div class="tick">✓</div><p>Re-check terms after budget increases</p></div>
+            <div class="check"><div class="tick">✓</div><p>Validate “best performers” drive pipeline</p></div>
+            <div class="check"><div class="tick">✓</div><p>Set weekly reminder for query control</p></div>
+            <div class="check"><div class="tick">✓</div><p>Use tools to speed up intent mapping</p></div>
+          </div>
+
+          <div class="divider"></div>
+
+          <p class="mini">
+            Internal tools (text link): <a href="https://adsnord.com/tools/" target="_blank" rel="noopener"><strong>AdsNord Free Tools</strong></a> ·
+            Internal hub: <a href="https://adsnord.com/blog/google-ads-audit/google-ads-not-profitable/" target="_blank" rel="noopener"><strong>Google Ads Not Profitable</strong></a> ·
+            Contact: <a href="https://adsnord.com/contact/" target="_blank" rel="noopener"><strong>Contact</strong></a>
+          </p>
+        </section>
+
+        <!-- SERVICES TEXT LINK (body only, not CTA ✅) -->
+        <section class="card">
+          <h2>When to get help (without turning this into a sales page)</h2>
+
+          <p>
+            If performance is unstable, lead quality is inconsistent, or your account structure mixes intent layers,
+            a structured review is usually faster than endless tweaks.
+          </p>
+
+          <p>
+            If you want to see how AdsNord approaches Google Ads as a profitability system (intent → structure → audit → landing page),
+            explore the framework here (text link only):
+            <a href="https://adsnord.com/services/" target="_blank" rel="noopener">AdsNord Services</a>.
+          </p>
+
+          <!-- CTA #2 ✅ (CONTACT PAGE) -->
+          <div class="btn-row">
+            <a class="btn btn-contact" href="https://adsnord.com/contact/" target="_blank" rel="noopener">
+              Contact AdsNord
+            </a>
+          </div>
+        </section>
+
+        <!-- FAQ (Accordion ✅) -->
+        <section id="faq" class="card faq">
+          <h2>FAQ: Google Ads keyword intent (accordion)</h2>
+
+          <details>
+            <summary>How do I find negative keywords in Google Ads?</summary>
+            <div class="ans">
+              Use the Search Terms Report weekly. Label terms by intent, then add negatives in layers:
+              account-level for universal junk, campaign-level for intent separation, and ad group-level for relevance.
+              This is the core of an evergreen <strong>negative keyword strategy</strong>.
+            </div>
+          </details>
+
+          <details>
+            <summary>Should I use broad match in Google Ads?</summary>
+            <div class="ans">
+              Broad match can work when you have clean conversion signals, stable volume, and strict intent protection.
+              Without weekly query reviews and strong negatives, broad match often increases <strong>google ads irrelevant searches</strong>.
+            </div>
+          </details>
+
+          <details>
+            <summary>Why am I getting irrelevant searches on Google Ads?</summary>
+            <div class="ans">
+              Most common causes: loose match types, weak negatives, and mixed campaign structure where high intent and research intent live together.
+              Fixing <strong>google ads keyword intent</strong> usually reduces irrelevant searches quickly.
+            </div>
+          </details>
+
+          <details>
+            <summary>How often should I check the Search Terms Report?</summary>
+            <div class="ans">
+              Weekly for most active B2B lead generation accounts. Check more often after budget increases or major keyword expansion.
+            </div>
+          </details>
+
+          <details>
+            <summary>Do negative keywords hurt smart bidding?</summary>
+            <div class="ans">
+              No. Negative keywords reduce noise and protect conversion signals. Smart bidding improves when it learns from higher-quality data.
+            </div>
+          </details>
+
+          <details>
+            <summary>Why does performance drop when I increase budget?</summary>
+            <div class="ans">
+              Budget increases trigger more exploration. If intent controls are weak, the system buys more mixed intent and CPA rises.
+              Tight negatives + intent separation prevents this.
+            </div>
+          </details>
+        </section>
+
+        <!-- AUTHOR -->
+        <section id="author" class="card">
+          <h2>Author</h2>
+
+          <div class="author">
+            <div class="avatar">MM</div>
+            <div class="meta">
+              <strong>MD Motiur</strong>
+              <span>
+                Google Ads Consultant at <strong>AdsNord</strong> — focused on diagnostic-first optimization for B2B & lead generation.
+              </span>
+              <span class="mini">
+                At AdsNord, we build Google Ads systems that prioritize intent control, clean conversion signals, and scalable profitability —
+                so you don’t just generate leads, you generate pipeline quality.
+              </span>
+            </div>
+          </div>
+
+          <div class="callout">
+            <strong>Recommended reading path:</strong>
+            Start with the hub guide:
+            <a href="https://adsnord.com/blog/google-ads-audit/google-ads-not-profitable/" target="_blank" rel="noopener">
+              Why Your Google Ads Are Not Profitable
+            </a>
+            — then use this post to control intent before scaling budgets.
+          </div>
+        </section>
+
+        <!-- FINANCIAL + CONTACT FORM -->
+        <section id="financial" class="card">
+          <h2>Financial impact: the cost of query waste (simple model)</h2>
+
+          <p>
+            Even without mentioning specific budgets publicly, you can quantify waste with a simple model:
+          </p>
+
+          <ul>
+            <li><strong>Wasted spend</strong> = Monthly ad spend × % irrelevant searches</li>
+            <li><strong>Annual waste</strong> = Wasted spend × 12</li>
+            <li><strong>Opportunity cost</strong> = Annual waste × your expected profit multiple</li>
+          </ul>
+
+          <div class="callout">
+            <strong>Reality check:</strong>
+            If 20–30% of search terms are irrelevant, you’re paying a hidden tax on every conversion.
+            Intent control is often the fastest ROI unlock because it reduces waste before you spend more.
+          </div>
+
+          <h3>Request a structured review</h3>
+          <p class="mini">
+            This is a base HTML form layout you can connect to your WordPress form plugin or backend.
+          </p>
+
+          <form method="post" action="">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" />
+            </div>
+
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@company.com" />
+            </div>
+
+            <div>
+              <label for="website">Website</label>
+              <input id="website" name="website" type="url" placeholder="https://yourwebsite.com" />
+            </div>
+
+            <div>
+              <label for="goal">Primary goal</label>
+              <select id="goal" name="goal">
+                <option value="">Select one</option>
+                <option>B2B lead generation</option>
+                <option>Booked calls / demos</option>
+                <option>Quotes / inquiries</option>
+                <option>Pipeline quality improvement</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message">What are you seeing in your account?</label>
+              <textarea id="message" name="message" placeholder="Example: irrelevant searches, rising CPA, low-quality leads, unstable performance..."></textarea>
+            </div>
+
+            <button class="submit" type="submit">Request Review</button>
+
+            <p class="mini">
+              Or use the contact page:
+              <a href="https://adsnord.com/contact/" target="_blank" rel="noopener"><strong>Contact AdsNord</strong></a>
+            </p>
+          </form>
+        </section>
+
+        <!-- CONCLUSION -->
+        <section id="conclusion" class="card">
+          <h2>Final takeaway: intent control is profitability control</h2>
+
+          <p>
+            When B2B lead generation campaigns struggle, the fastest fix is rarely a new bid strategy.
+            Most of the time, it’s <strong>google ads keyword intent</strong> — the queries you pay for and the signals you feed into optimization.
+          </p>
+
+          <p>
+            If you implement one habit from this blog, make it this:
+            review search terms weekly, label intent, and build layered negatives.
+            That workflow reduces waste, stabilizes CPA, and improves lead quality — so scaling becomes predictable.
+          </p>
+
+          <div class="callout">
+            <strong>Next step:</strong>
+            Use the diagnostic hub:
+            <a href="https://adsnord.com/blog/google-ads-audit/google-ads-not-profitable/" target="_blank" rel="noopener">
+              Why Your Google Ads Are Not Profitable
+            </a>
+            and the <a href="https://adsnord.com/tools/" target="_blank" rel="noopener"><strong>AdsNord Free Tools</strong></a>
+            to speed up your intent mapping.
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ✅ SINGLE 10/10 Enhancement JS (ADD-ONLY, consolidated, conflict-free) -->
+  <script>
+  (function(){
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    // 0) Skip link (a11y)
+    const skip = document.createElement('a');
+    skip.href = '#intro';
+    skip.className = 'skip-link';
+    skip.textContent = 'Skip to content';
+    document.body.prepend(skip);
+
+    // 1) Reading progress bar
+    const bar = $('#readProgress');
+    function updateProgress(){
+      if(!bar) return;
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const height = (doc.scrollHeight - doc.clientHeight) || 1;
+      const pct = Math.min(100, Math.max(0, (scrollTop / height) * 100));
+      bar.style.width = pct.toFixed(2) + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive:true });
+    updateProgress();
+
+    // 2) Inject breadcrumbs + trust badges + "Last updated" in HERO (no edits to core HTML)
+    const hero = $('.hero');
+    if(hero){
+      // Breadcrumbs
+      const crumbs = document.createElement('nav');
+      crumbs.className = 'crumbs';
+      crumbs.setAttribute('aria-label', 'Breadcrumb');
+      crumbs.innerHTML = `
+        <a href="https://adsnord.com/" rel="home">Home</a>
+        <span class="sep">›</span>
+        <a href="https://adsnord.com/blog/">Blog</a>
+        <span class="sep">›</span>
+        <span aria-current="page">Keyword Intent Strategy</span>
+      `;
+      hero.prepend(crumbs);
+
+      // Last updated badge
+      const badge = document.createElement('div');
+      const now = new Date();
+      const fmt = now.toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+      badge.className = 'updated-badge';
+      badge.innerHTML = '🕒 <strong>Last updated:</strong> ' + fmt;
+
+      // Trust badges row
+      const trust = document.createElement('div');
+      trust.className = 'trust-row';
+      trust.innerHTML = `
+        <div class="badge">🧠 Consultant Framework <small>Not generic tips</small></div>
+        <div class="badge">🧾 Weekly Workflow <small>Search terms system</small></div>
+        <div class="badge">🛡️ Intent Protection <small>Negatives + structure</small></div>
+        <div class="badge">📈 Smart Bidding Safe <small>Cleaner signals</small></div>
+      `;
+
+      const lead = hero.querySelector('.lead');
+      if(lead){
+        lead.insertAdjacentElement('afterend', trust);
+        trust.insertAdjacentElement('afterend', badge);
+      }else{
+        hero.appendChild(trust);
+        hero.appendChild(badge);
+      }
+    }
+
+    // 3) Smooth TOC highlight based on scroll position
+    const tocLinks = $$('.toc a[href^="#"]');
+    const sections = tocLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+    function setActive(){
+      const y = window.scrollY || document.documentElement.scrollTop;
+      let idx = 0;
+      for(let i=0;i<sections.length;i++){
+        const top = sections[i].getBoundingClientRect().top + window.scrollY - 140;
+        if(y >= top) idx = i;
+      }
+      tocLinks.forEach((a,i)=>a.classList.toggle('is-active', i===idx));
+    }
+    if(tocLinks.length && sections.length){
+      window.addEventListener('scroll', setActive, { passive:true });
+      setActive();
+    }
+
+    // 4) Add "Copy link" button to each main section card with an id
+    const mainSections = $$('.main section[id].card');
+    mainSections.forEach(sec=>{
+      const id = sec.getAttribute('id');
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'copylink';
+      btn.innerHTML = '🔗 Copy section link <small>#' + id + '</small>';
+      btn.addEventListener('click', async ()=>{
+        const url = window.location.origin + window.location.pathname + '#' + id;
+        try{
+          await navigator.clipboard.writeText(url);
+          btn.innerHTML = '✅ Copied! <small>#' + id + '</small>';
+          setTimeout(()=>btn.innerHTML = '🔗 Copy section link <small>#' + id + '</small>', 1400);
+        }catch(e){
+          prompt('Copy this link:', url);
+        }
+      });
+      const h2 = sec.querySelector('h2');
+      if(h2) h2.insertAdjacentElement('afterend', btn);
+      else sec.prepend(btn);
+    });
+
+    // 5) Inject Templates / Lead Magnet card
+    const implementation = $('#implementation');
+    if(implementation){
+      const card = document.createElement('section');
+      card.className = 'card';
+      card.id = 'templates';
+      card.innerHTML = `
+        <h2>Free templates: intent map + negatives log (copy/paste)</h2>
+        <div class="template">
+          <div class="icon">📄</div>
+          <div class="content">
+            <strong>Want this workflow to run in 15 minutes each week?</strong>
+            <p>
+              Use these templates to label intent, document actions, and avoid repeating the same cleanup every week.
+              (This improves consistency, team handoffs, and smart bidding stability.)
+            </p>
+
+            <div class="actions">
+              <button class="btn-soft" type="button" id="copyNegLog">📋 Copy Negatives Log Template</button>
+              <button class="btn-soft" type="button" id="copyIntentMap">🧭 Copy Intent Map Template</button>
+              <a class="btn-soft" href="#financial">🧮 Calculate waste model</a>
+            </div>
+
+            <p class="mini" style="margin-top:10px;">
+              Tip: paste into Google Sheets. Keep one tab for “Negatives Log” and one for “Intent Map”.
+            </p>
+          </div>
+        </div>
+      `;
+      implementation.insertAdjacentElement('afterend', card);
+
+      const negLog = [
+        ["Date","Search term","Intent label","Action","Level (Account/Campaign/Ad group)","Where applied","Reason","Owner"],
+        ["2026-02-22","example search term","Irrelevant","Add as negative","Campaign","Campaign: High Intent","Stops waste + protects learning","You"]
+      ].map(r => r.join("\t")).join("\n");
+
+      const intentMap = [
+        ["Intent layer","Examples","Best match type","Landing page goal","Conversion signal priority","Notes"],
+        ["High commercial","pricing / hire / service / consultant","Exact / Phrase","Book call / request quote","Qualified lead / SQL","Protect with negatives + separate campaigns"],
+        ["Evaluation","compare / best / reviews","Phrase","Case study / proof / consult","Qualified lead + engagement","Works if page matches evaluation stage"],
+        ["Research","how-to / what is / guide","Phrase / Broad (if isolated)","Nurture / qualify","Micro conversions only","Isolate to avoid contaminating high intent"]
+      ].map(r => r.join("\t")).join("\n");
+
+      async function copyText(text){
+        try{ await navigator.clipboard.writeText(text); return true; }
+        catch(e){ return false; }
+      }
+
+      const btnNeg = $('#copyNegLog');
+      const btnMap = $('#copyIntentMap');
+
+      if(btnNeg){
+        btnNeg.addEventListener('click', async ()=>{
+          const ok = await copyText(negLog);
+          if(ok){
+            btnNeg.textContent = '✅ Copied Negatives Log Template';
+            setTimeout(()=>btnNeg.textContent = '📋 Copy Negatives Log Template', 1400);
+          }else{
+            prompt('Copy this template:', negLog);
+          }
+        });
+      }
+      if(btnMap){
+        btnMap.addEventListener('click', async ()=>{
+          const ok = await copyText(intentMap);
+          if(ok){
+            btnMap.textContent = '✅ Copied Intent Map Template';
+            setTimeout(()=>btnMap.textContent = '🧭 Copy Intent Map Template', 1400);
+          }else{
+            prompt('Copy this template:', intentMap);
+          }
+        });
+      }
+
+      // Also add templates to TOC (add-only)
+      const tocList = $('.toc ul');
+      if(tocList){
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="#templates">Free templates: intent map + negatives log</a>`;
+        const insertAfter = tocList.querySelector('li:nth-child(8)'); // after implementation-ish area
+        if(insertAfter) insertAfter.insertAdjacentElement('afterend', li);
+        else tocList.appendChild(li);
+      }
+    }
+
+    // 6) Inject "Examples table" under intro (add-only)
+    const intro = $('#intro');
+    if(intro){
+      const examples = document.createElement('section');
+      examples.className = 'card';
+      examples.id = 'examples';
+      examples.innerHTML = `
+        <h2>Examples: label search terms by intent (B2B lead gen)</h2>
+        <p>
+          Use this as a quick reference when you’re labeling the Search Terms Report.
+          The goal is to protect high-intent campaigns from research and irrelevant traffic.
+        </p>
+
+        <div class="table-wrap" role="region" aria-label="Intent examples table" tabindex="0">
+          <table class="intent-table">
+            <thead>
+              <tr>
+                <th>Query type</th>
+                <th>Example search terms</th>
+                <th>Intent</th>
+                <th>Recommended action</th>
+                <th>Match type guidance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Hire / service-ready</td>
+                <td>“google ads consultant for saas”, “ppc agency b2
